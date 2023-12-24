@@ -33,7 +33,10 @@ class _UserMechanicListState extends State<UserMechanicList> {
                   height: 40.h,
                   width: 250.w,
                   child: Row(children: [
-                    Icon(Icons.search),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(Icons.search),
+                    ),
                     SizedBox(
                         width: 200.w,
                         child: TextFormField(

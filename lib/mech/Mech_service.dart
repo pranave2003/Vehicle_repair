@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'Mech_Add_service.dart';
+import 'Mech_service_home.dart';
 
 class MechService extends StatefulWidget {
   const MechService({super.key});
@@ -89,7 +90,9 @@ class _MechServiceState extends State<MechService> {
           backgroundColor: Color(0xffCFE2FF),
           title: Row(
             children: [
-              IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
+              IconButton(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return MechServiceHome();
+              },));}, icon: Icon(Icons.arrow_back_ios)),
               Text("service"),
             ],
           )),
