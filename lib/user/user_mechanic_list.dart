@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'Mechanic.dart';
 import 'Requests.dart';
+import 'User_notification.dart';
+import 'User_profile.dart';
 
 class UserMechanicList extends StatefulWidget {
   const UserMechanicList({super.key});
@@ -22,7 +24,11 @@ class _UserMechanicListState extends State<UserMechanicList> {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                CircleAvatar(backgroundImage: AssetImage("assets/bMan.png")),
+                InkWell(onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return UserProfile();
+                  },));
+                },child: CircleAvatar(backgroundImage: AssetImage("assets/bMan.png"))),
                 Container(
                   height: 40.h,
                   width: 250.w,
@@ -39,7 +45,9 @@ class _UserMechanicListState extends State<UserMechanicList> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15)),
                 ),
-                IconButton(onPressed: () {}, icon: Icon(Icons.notification_add))
+                IconButton(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return UserNotification();
+                },));}, icon: Icon(Icons.notification_add))
               ],
             )),
 
