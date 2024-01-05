@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'Admin_Notification.dart';
 import 'Admin_Payment.dart';
 import 'Home.dart';
-import '../mech/Mechanical_list.dart';
+import 'Mechanical_list.dart';
 import 'User_list.dart';
 
 class AdminHomeuser extends StatefulWidget {
@@ -27,7 +27,7 @@ class _AdminHomeuserState extends State<AdminHomeuser> {
         backgroundColor: Color(0xffE8F1FF),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: indexNum,
-          selectedIconTheme: IconThemeData(color: Colors.blue),
+          selectedIconTheme: IconThemeData(color: const Color.fromARGB(255, 14, 21, 26)),
           onTap: (int Index) {
             setState(() {
               indexNum = Index;

@@ -28,6 +28,8 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  cloud_firestore: ^4.13.6
+  firebase_core: ^2.24.2
   flutter_rating_bar: ^4.0.1
   flutter_screenutil: ^5.9.0
   flutter:
@@ -70,7 +72,8 @@ flutter:
     - assets/bussiness-man 2.png
     - assets/bMan.png
     - assets/check 1.png
-    - 
+
+
  
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -3,22 +3,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'Admin_User.dart';
+import 'Admin_Mechanic.dart';
 
-class UserList extends StatefulWidget {
-  const UserList({super.key});
+class MechanicalList extends StatefulWidget {
+  const MechanicalList({super.key});
 
   @override
-  State<UserList> createState() => _UserListState();
+  State<MechanicalList> createState() => _MechanicalListState();
 }
 
-class _UserListState extends State<UserList> {
+class _MechanicalListState extends State<MechanicalList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFE7F0FF),
       body: FutureBuilder(
-        future: FirebaseFirestore.instance.collection("User").get(),
+        future: FirebaseFirestore.instance.collection('mechsighn').get(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
@@ -30,36 +30,35 @@ class _UserListState extends State<UserList> {
               child: Text("Error:${snapshot.error}"),
             );
           }
-          final user = snapshot.data?.docs ?? [];
-          // print(user[0].id);
+          final mesign = snapshot.data?.docs ?? [];
           return ListView.builder(
-            itemCount: user.length,
+            // shrinkWrap: true,
+            itemCount: mesign.length,
             itemBuilder: (context, index) {
               return Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: InkWell(
+                padding: const EdgeInsets.only(
+                  top: 10,
+                ).r,
+                child: ListTile(
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(
                       builder: (context) {
-                        return AdminUser(
+                        return AdminMechanic(
+                          id: mesign[index].id,
 
-                          id: user[index].id
                         );
                       },
                     ));
                   },
-                  child: ListTile(
-                    tileColor: Colors.white,
-                    leading: Image.asset('assets/dp.png'),
-                    title: Text(user[index]['username']),
-                    subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(user[index]['phone']),
-                          Text(user[index]['Mail']),
-                          Text(user[index]['passwoord'])
-                        ]),
-                  ),
+                  tileColor: Colors.white,
+                  leading: Image.asset('assets/dp.png'),
+                  title: Text(mesign[index]['username']),
+                  subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(mesign[index]['Phonenumber']),
+                        Text(mesign[index]['shopename'])
+                      ]),
                 ),
               );
             },

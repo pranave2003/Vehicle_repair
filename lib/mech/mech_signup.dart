@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,9 +11,31 @@ class Mechsignup extends StatefulWidget {
 }
 
 class _MechsignupState extends State<Mechsignup> {
+  var mechname = TextEditingController();
+  var mechphone = TextEditingController();
+  var mechemail = TextEditingController();
+  var mechexperience = TextEditingController();
+  var mechshopename = TextEditingController();
+  var mechpassword = TextEditingController();
+  Future<dynamic>
+  mechsigh() async {
+    print('object');
+    await FirebaseFirestore.instance.collection('mechsighn').add({
+      "username": mechname.text,
+      "Phonenumber": mechphone.text,
+      "email": mechemail.text,
+      "experience": mechexperience.text,
+      "shopename": mechshopename.text,
+      "password": mechpassword.text,
+      "status":0
+    }).then((value) {
+      print("Signup success");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
         backgroundColor: Color(0xffCFE2FF),
         body: ListView(
           children: [
@@ -43,20 +66,18 @@ class _MechsignupState extends State<Mechsignup> {
                   ),
                   child: Text(
                     "SIGN UP",
-                    style:
-                    TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
+                    style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
                   ),
                 )
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(left: 50.w,bottom: 10.h),
+              padding: EdgeInsets.only(left: 50.w, bottom: 10.h),
               child: Row(
                 children: [
                   Text(
                     "Enter username",
-                    style:
-                    TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                   )
                 ],
               ),
@@ -68,6 +89,7 @@ class _MechsignupState extends State<Mechsignup> {
                   width: 290.w,
                   height: 50.h,
                   child: TextFormField(
+                      controller: mechname,
                       decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "  Username",
@@ -80,15 +102,17 @@ class _MechsignupState extends State<Mechsignup> {
             ),
             // phone
             Padding(
-              padding: EdgeInsets.only(left: 50.w,),
+              padding: EdgeInsets.only(
+                left: 50.w,
+              ),
               child: Row(
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       "Enter Phone number",
-                      style: TextStyle(
-                          fontSize: 15, fontWeight: FontWeight.w600),
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                     ),
                   )
                 ],
@@ -101,6 +125,7 @@ class _MechsignupState extends State<Mechsignup> {
                   width: 290.w,
                   height: 50.h,
                   child: TextFormField(
+                      controller: mechphone,
                       decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "  Phone number",
@@ -113,15 +138,17 @@ class _MechsignupState extends State<Mechsignup> {
             ),
             //email
             Padding(
-              padding: EdgeInsets.only(left: 50.w,),
+              padding: EdgeInsets.only(
+                left: 50.w,
+              ),
               child: Row(
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       "Enter Your email",
-                      style: TextStyle(
-                          fontSize: 15, fontWeight: FontWeight.w600),
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                     ),
                   )
                 ],
@@ -134,6 +161,7 @@ class _MechsignupState extends State<Mechsignup> {
                   width: 290.w,
                   height: 50.h,
                   child: TextFormField(
+                      controller: mechemail,
                       decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "  Enter email",
@@ -146,15 +174,17 @@ class _MechsignupState extends State<Mechsignup> {
             ),
             //expiriance
             Padding(
-              padding: EdgeInsets.only(left: 50.w,),
+              padding: EdgeInsets.only(
+                left: 50.w,
+              ),
               child: Row(
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       "Enter your work experience",
-                      style: TextStyle(
-                          fontSize: 15, fontWeight: FontWeight.w600),
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                     ),
                   )
                 ],
@@ -167,6 +197,7 @@ class _MechsignupState extends State<Mechsignup> {
                   width: 290.w,
                   height: 50.h,
                   child: TextFormField(
+                      controller: mechexperience,
                       decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "  Enter your experience",
@@ -179,15 +210,17 @@ class _MechsignupState extends State<Mechsignup> {
             ),
             //workshopname
             Padding(
-              padding: EdgeInsets.only(left: 50.w,),
+              padding: EdgeInsets.only(
+                left: 50.w,
+              ),
               child: Row(
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       "Enter Workshop name",
-                      style: TextStyle(
-                          fontSize: 15, fontWeight: FontWeight.w600),
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                     ),
                   )
                 ],
@@ -200,6 +233,7 @@ class _MechsignupState extends State<Mechsignup> {
                   width: 290.w,
                   height: 50.h,
                   child: TextFormField(
+                      controller: mechshopename,
                       decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "  Enter your shop name",
@@ -212,15 +246,17 @@ class _MechsignupState extends State<Mechsignup> {
             ),
             //pass
             Padding(
-              padding: EdgeInsets.only(left: 50.w,),
+              padding: EdgeInsets.only(
+                left: 50.w,
+              ),
               child: Row(
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       "Enter your Password",
-                      style: TextStyle(
-                          fontSize: 15, fontWeight: FontWeight.w600),
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                     ),
                   )
                 ],
@@ -233,6 +269,7 @@ class _MechsignupState extends State<Mechsignup> {
                   width: 290.w,
                   height: 50.h,
                   child: TextFormField(
+                      controller: mechpassword,
                       decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "  Enter your Password",
@@ -245,7 +282,7 @@ class _MechsignupState extends State<Mechsignup> {
             ),
             // login
             Padding(
-              padding: EdgeInsets.only(top:50.h,bottom: 20.h),
+              padding: EdgeInsets.only(top: 50.h, bottom: 20.h),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -253,7 +290,9 @@ class _MechsignupState extends State<Mechsignup> {
                     width: 190.w,
                     height: 50.h,
                     child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          mechsigh();
+                        },
                         child: Text(
                           "LOGIN",
                           style: TextStyle(color: Colors.white),
@@ -265,7 +304,6 @@ class _MechsignupState extends State<Mechsignup> {
                 ],
               ),
             ),
-
           ],
         ));
   }

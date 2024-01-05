@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../mech/Mechanical_list.dart';
+import 'Mechanical_list.dart';
 import 'User_list.dart';
 
 class HOME extends StatefulWidget {

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,6 +11,22 @@ class UserSighnup extends StatefulWidget {
 }
 
 class _UserSighnupState extends State<UserSighnup> {
+  var Username = TextEditingController();
+  var Phonenumber = TextEditingController();
+  var email = TextEditingController();
+  var Password = TextEditingController();
+Future<dynamic>  sigh()  async {
+    await FirebaseFirestore.instance.collection('User').add({
+      "username": Username.text,
+      "phone": Phonenumber.text,
+      "Mail": email.text,
+      "passwoord": Password.text,
+      "status":0
+    }).then((value) {
+      print("Signup success");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,20 +60,18 @@ class _UserSighnupState extends State<UserSighnup> {
                   ),
                   child: Text(
                     "SIGN UP",
-                    style:
-                    TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
+                    style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
                   ),
                 )
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(left: 50.w,bottom: 10.h),
+              padding: EdgeInsets.only(left: 50.w, bottom: 10.h),
               child: Row(
                 children: [
                   Text(
                     "Enter username",
-                    style:
-                    TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                   )
                 ],
               ),
@@ -68,6 +83,7 @@ class _UserSighnupState extends State<UserSighnup> {
                   width: 290.w,
                   height: 50.h,
                   child: TextFormField(
+                      controller: Username,
                       decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "  Username",
@@ -80,15 +96,17 @@ class _UserSighnupState extends State<UserSighnup> {
             ),
             // phone
             Padding(
-              padding: EdgeInsets.only(left: 50.w,),
+              padding: EdgeInsets.only(
+                left: 50.w,
+              ),
               child: Row(
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       "Enter Phone number",
-                      style: TextStyle(
-                          fontSize: 15, fontWeight: FontWeight.w600),
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                     ),
                   )
                 ],
@@ -101,6 +119,7 @@ class _UserSighnupState extends State<UserSighnup> {
                   width: 290.w,
                   height: 50.h,
                   child: TextFormField(
+                      controller: Phonenumber,
                       decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "  Phone number",
@@ -113,15 +132,17 @@ class _UserSighnupState extends State<UserSighnup> {
             ),
             //email
             Padding(
-              padding: EdgeInsets.only(left: 50.w,),
+              padding: EdgeInsets.only(
+                left: 50.w,
+              ),
               child: Row(
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       "Enter Your email",
-                      style: TextStyle(
-                          fontSize: 15, fontWeight: FontWeight.w600),
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                     ),
                   )
                 ],
@@ -134,6 +155,7 @@ class _UserSighnupState extends State<UserSighnup> {
                   width: 290.w,
                   height: 50.h,
                   child: TextFormField(
+                      controller: email,
                       decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "  Enter email",
@@ -146,15 +168,17 @@ class _UserSighnupState extends State<UserSighnup> {
             ),
             //pass
             Padding(
-              padding: EdgeInsets.only(left: 50.w,),
+              padding: EdgeInsets.only(
+                left: 50.w,
+              ),
               child: Row(
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       "Enter your Password",
-                      style: TextStyle(
-                          fontSize: 15, fontWeight: FontWeight.w600),
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                     ),
                   )
                 ],
@@ -167,6 +191,7 @@ class _UserSighnupState extends State<UserSighnup> {
                   width: 290.w,
                   height: 50.h,
                   child: TextFormField(
+                      controller: Password,
                       decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "  Enter your Password",
@@ -179,7 +204,7 @@ class _UserSighnupState extends State<UserSighnup> {
             ),
             // login
             Padding(
-              padding: EdgeInsets.only(top:50.h,bottom: 20.h),
+              padding: EdgeInsets.only(top: 50.h, bottom: 20.h),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -187,9 +212,11 @@ class _UserSighnupState extends State<UserSighnup> {
                     width: 190.w,
                     height: 50.h,
                     child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          sigh();
+                        },
                         child: Text(
-                          "LOGIN",
+                          "SIGN UP",
                           style: TextStyle(color: Colors.white),
                         )),
                     decoration: BoxDecoration(
@@ -199,7 +226,6 @@ class _UserSighnupState extends State<UserSighnup> {
                 ],
               ),
             ),
-
           ],
         ));
   }

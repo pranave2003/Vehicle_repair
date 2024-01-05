@@ -1,6 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'Admin_Notification.dart';
+import 'Admin_home_User.dart';
 
 class AdminAddNotification extends StatefulWidget {
   const AdminAddNotification({super.key});
@@ -10,6 +14,21 @@ class AdminAddNotification extends StatefulWidget {
 }
 
 class _AdminAddNotificationState extends State<AdminAddNotification> {
+  var Matter = TextEditingController();
+  var Content = TextEditingController();
+  Future<dynamic> notification() async {
+   setState(() {
+     print('gooooooooooo///////////');
+     FirebaseFirestore.instance
+         .collection("Notification")
+         .add({"matter": Matter.text, "content": Content.text}).then((value) {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+            return AdminHomeuser();
+          },));
+     });
+   });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +38,11 @@ class _AdminAddNotificationState extends State<AdminAddNotification> {
           SafeArea(
             child: Row(
               children: [
-                IconButton(onPressed: () {Navigator.of(context).pop();}, icon: Icon(Icons.arrow_back_ios)),
+                IconButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    icon: Icon(Icons.arrow_back_ios)),
               ],
             ),
           ),
@@ -44,6 +67,7 @@ class _AdminAddNotificationState extends State<AdminAddNotification> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
+                      controller: Matter,
                       decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "   Matter",
@@ -64,32 +88,35 @@ class _AdminAddNotificationState extends State<AdminAddNotification> {
               ],
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                height: 500.h,
-                width: 330.w,
-                color: Colors.white,
-                child: TextFormField(
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "   Content.....",
-                        hintStyle: TextStyle(color: Colors.grey))),
-              )
-            ],
+          Container(
+            height: 500.h,
+            width: 330.w,
+            color: Colors.white,
+            child: TextFormField(
+                controller: Content,
+                maxLines: 10,
+                decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: "   Content.....",
+                    hintStyle: TextStyle(color: Colors.grey))),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding:  EdgeInsets.only(top: 20.h),
+                padding: EdgeInsets.only(top: 20.h),
                 child: Container(
                   width: 200.w,
                   height: 50.h,
                   child: Center(
-                      child: TextButton(onPressed: (){}, child: Text("Submit",style: TextStyle(color: Colors.white),))
-                  ),
+                      child: TextButton(
+                          onPressed: () {
+                            notification();
+                          },
+                          child: Text(
+                            "Submit",
+                            style: TextStyle(color: Colors.white),
+                          ))),
                   decoration: BoxDecoration(
                       color: Color(0xff2357D9),
                       borderRadius: BorderRadius.circular(20)),
