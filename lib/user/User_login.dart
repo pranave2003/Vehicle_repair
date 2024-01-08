@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,9 +11,11 @@ class Userlogin extends StatefulWidget {
 }
 
 class _UserloginState extends State<Userlogin> {
-  @override
+  var username = TextEditingController();
+  var password = TextEditingController();
+
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
         backgroundColor: Color(0xffCFE2FF),
         body: SingleChildScrollView(
           child: Column(
@@ -45,7 +48,7 @@ class _UserloginState extends State<Userlogin> {
                     child: Text(
                       "LOGIN",
                       style:
-                      TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
+                          TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
                     ),
                   )
                 ],
@@ -57,7 +60,7 @@ class _UserloginState extends State<Userlogin> {
                     Text(
                       "Enter username",
                       style:
-                      TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                     )
                   ],
                 ),
@@ -71,6 +74,7 @@ class _UserloginState extends State<Userlogin> {
                       width: 290.w,
                       height: 50.h,
                       child: TextFormField(
+                          controller: username,
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: "  Username",
@@ -106,6 +110,7 @@ class _UserloginState extends State<Userlogin> {
                       width: 290.w,
                       height: 50.h,
                       child: TextFormField(
+                          controller: password,
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: "  Enter Password",
@@ -157,10 +162,16 @@ class _UserloginState extends State<Userlogin> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("Do you have account ?"),
-                    TextButton(onPressed: () {}, child: Text("Sign up",style: TextStyle(color: Colors.blueAccent),))
+                    TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Sign up",
+                          style: TextStyle(color: Colors.blueAccent),
+                        ))
                   ],
                 ),
               )

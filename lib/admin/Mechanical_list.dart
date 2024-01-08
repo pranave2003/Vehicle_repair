@@ -57,7 +57,34 @@ class _MechanicalListState extends State<MechanicalList> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(mesign[index]['Phonenumber']),
-                        Text(mesign[index]['shopename'])
+                        Text(mesign[index]['shopename']),
+                        mesign[index]['status'] == 0?
+                        Row(
+                          children: [
+                            Container(
+                              width: 70.w,
+                              height: 20.h,
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.grey),
+                              child: Center(child: Text("pending",style: TextStyle(color: Colors.white))),
+
+                            )
+                          ],
+                        )
+                            : mesign[index]['status'] == 1
+                            ? Container(
+                          width: 70.w,
+                          height: 20.h,
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.green),
+                          child: Center(child: Text("Accepted",style: TextStyle(color: Colors.white))),
+
+                        )
+                            : Container(
+                          width: 70.w,
+                          height: 20.h,
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.red),
+                          child: Center(child: Text("Rejected",style: TextStyle(color: Colors.white))),
+
+                        )
                       ]),
                 ),
               );

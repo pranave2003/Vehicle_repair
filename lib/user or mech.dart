@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'admin/Admin_login.dart';
+
 class Userormech extends StatefulWidget {
   const Userormech({super.key});
 
@@ -98,7 +100,11 @@ class _UserormechState extends State<Userormech> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) {
+                          return Adminlogin();
+                        },));
+                      },
                       child: Text(
                         "Admin Login",
                         style: TextStyle(

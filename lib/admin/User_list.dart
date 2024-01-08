@@ -41,23 +41,51 @@ class _UserListState extends State<UserList> {
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(
                       builder: (context) {
-                        return AdminUser(
-
-                          id: user[index].id
-                        );
+                        return AdminUser(id: user[index].id);
                       },
                     ));
                   },
                   child: ListTile(
                     tileColor: Colors.white,
-                    leading: Image.asset('assets/dp.png'),
+                    leading: Column(
+                      children: [
+                        Image.asset('assets/dp.png'),
+                      ],
+                    ),
                     title: Text(user[index]['username']),
                     subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(user[index]['phone']),
                           Text(user[index]['Mail']),
-                          Text(user[index]['passwoord'])
+                          Text(user[index]['passwoord']),
+                          user[index]['status'] == 0
+                              ? Row(
+                                  children: [
+                                    Container(
+                                      width: 70.w,
+                                      height: 20.h,
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.grey),
+                                      child: Center(child: Text("pending",style: TextStyle(color: Colors.white))),
+
+                                    )
+                                  ],
+                                )
+                              : user[index]['status'] == 1
+                                  ? Container(
+                            width: 70.w,
+                            height: 20.h,
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.green),
+                            child: Center(child: Text("Accepted",style: TextStyle(color: Colors.white))),
+
+                          )
+                                  : Container(
+                                      width: 70.w,
+                                      height: 20.h,
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.red),
+                                      child: Center(child: Text("Rejected",style: TextStyle(color: Colors.white))),
+                                      
+                                    )
                         ]),
                   ),
                 ),

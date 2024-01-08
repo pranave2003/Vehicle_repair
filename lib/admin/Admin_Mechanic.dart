@@ -341,7 +341,7 @@ class _AdminMechanicState extends State<AdminMechanic> {
 
                         //button
                         Padding(
-                          padding:  EdgeInsets.only(top: 20.h, bottom: 50.h),
+                          padding:  EdgeInsets.only(top: 20.h, bottom: 50.h,left: 50.w,right: 50.w),
                           child:mesign!['status']==0?
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
