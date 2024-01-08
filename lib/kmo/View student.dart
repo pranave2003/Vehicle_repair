@@ -19,8 +19,8 @@ class _ViewstudentState extends State<Viewstudent> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("hgh")),
+    return Scaffold(backgroundColor: Colors.blue.shade100,
+      appBar: AppBar(title: Text("video classes"),backgroundColor: Colors.blue),
       body:FutureBuilder(future: FirebaseFirestore.instance.collection('Teacher').get(),
         builder: (context,AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -57,7 +57,7 @@ class _ViewstudentState extends State<Viewstudent> {
                                   style: TextStyle(fontWeight: FontWeight.w700),
                                 ),
                               ),
-                           Text("class${vedio[index]}")
+                           Text("data")
 
 
                             ],

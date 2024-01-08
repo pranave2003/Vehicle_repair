@@ -24,6 +24,7 @@ class _AddteacherState extends State<Addteacher> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(backgroundColor: Colors.greenAccent,title: Text("Add video")),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -32,19 +33,22 @@ class _AddteacherState extends State<Addteacher> {
             children: [
               Container(
                   height: 50,
-                  width: 200,
-                  color: Colors.grey,
+                  width: 300,
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),  color: Colors.greenAccent,),
                   child: TextFormField(
                     controller:gett ,
-                    decoration: InputDecoration(hintText: "enter your code"),
+                    decoration: InputDecoration(hintText: "   enter your video link",border: InputBorder.none),
                   )),
             ],
           ),
-          ElevatedButton(
-              onPressed: () {
-                register();
-              },
-              child: Text("Add"))
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ElevatedButton(
+                onPressed: () {
+                  register();
+                },
+                child: Text("Add link")),
+          )
         ],
       ),
     );
