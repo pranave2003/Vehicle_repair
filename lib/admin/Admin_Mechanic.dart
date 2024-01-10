@@ -341,7 +341,7 @@ class _AdminMechanicState extends State<AdminMechanic> {
 
                         //button
                         Padding(
-                          padding:  EdgeInsets.only(top: 20.h, bottom: 50.h,left: 50.w,right: 50.w),
+                          padding:  EdgeInsets.only(top: 20.h, bottom: 50.h,),
                           child:mesign!['status']==0?
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -380,34 +380,42 @@ class _AdminMechanicState extends State<AdminMechanic> {
                             ],
                           )
                               :mesign!['status']==1?
-                          Container(
-                            width: 150.w,
-                            height: 50.h,
-                            decoration: BoxDecoration(
-                                color: Colors.green,
-                                borderRadius:
-                                BorderRadius.circular(5.sp)),
-                            child: TextButton(
-                                onPressed: () {},
-                                child: Text(
-                                  "Accepted",
-                                  style: TextStyle(color: Colors.white),
-                                )),
+                          Row(  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Container(
+                                width: 150.w,
+                                height: 50.h,
+                                decoration: BoxDecoration(
+                                    color: Colors.green,
+                                    borderRadius:
+                                    BorderRadius.circular(5.sp)),
+                                child: TextButton(
+                                    onPressed: () {},
+                                    child: Text(
+                                      "Accepted",
+                                      style: TextStyle(color: Colors.white),
+                                    )),
+                              ),
+                            ],
                           )
                               :
-                          Container(
-                            width: 150.w,
-                            height: 50.h,
-                            decoration: BoxDecoration(
-                                color: Colors.red,
-                                borderRadius:
-                                BorderRadius.circular(5.sp)),
-                            child: TextButton(
-                                onPressed: () {},
-                                child: Text(
-                                  "Rejected",
-                                  style: TextStyle(color: Colors.white),
-                                )),
+                          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Container(
+                                width: 150.w,
+                                height: 50.h,
+                                decoration: BoxDecoration(
+                                    color: Colors.red,
+                                    borderRadius:
+                                    BorderRadius.circular(5.sp)),
+                                child: TextButton(
+                                    onPressed: () {},
+                                    child: Text(
+                                      "Rejected",
+                                      style: TextStyle(color: Colors.white),
+                                    )),
+                              ),
+                            ],
                           )
                         )
                       ]),

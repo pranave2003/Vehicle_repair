@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 
 import 'Admin_Notification.dart';
 import 'Admin_home_User.dart';
@@ -16,17 +17,21 @@ class AdminAddNotification extends StatefulWidget {
 class _AdminAddNotificationState extends State<AdminAddNotification> {
   var Matter = TextEditingController();
   var Content = TextEditingController();
+  final date = new DateTime.now();
+  TimeOfDay time = TimeOfDay.now();
   Future<dynamic> notification() async {
-   setState(() {
-     print('gooooooooooo///////////');
-     FirebaseFirestore.instance
-         .collection("Notification")
-         .add({"matter": Matter.text, "content": Content.text}).then((value) {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-            return AdminHomeuser();
-          },));
-     });
-   });
+    setState(() {
+      print('gooooooooooo///////////');
+      FirebaseFirestore.instance.collection("Notification").add({
+        "matter": Matter.text,
+        "content": Content.text,
+        'Time': time.format(context),
+        'date': DateFormat('dd/mm/yy').format(date)
+      });
+
+    });
+    Matter.clear();
+    Content.clear();
   }
 
   @override

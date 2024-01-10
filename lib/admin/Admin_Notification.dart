@@ -27,7 +27,7 @@ class _AdminNotificationState extends State<AdminNotification> {
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
-              child: CircularProgressIndicator(),
+              child: LinearProgressIndicator(color: Colors.red,),
             );
           }
           if (snapshot.hasError) {
@@ -42,8 +42,7 @@ class _AdminNotificationState extends State<AdminNotification> {
               return Padding(
                 padding: EdgeInsets.all(10.sp),
                 child: Container(
-                  height: 120.h,
-                  width: 100.w,
+
                   color: Colors.white,
                   child: Column(children: [
                     Row(

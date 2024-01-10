@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'User_login.dart';
+
 class UserSighnup extends StatefulWidget {
   const UserSighnup({super.key});
 
@@ -23,6 +25,9 @@ Future<dynamic>  sigh()  async {
       "passwoord": Password.text,
       "status":0
     }).then((value) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return Userlogin();
+      },));
       print("Signup success");
     });
   }

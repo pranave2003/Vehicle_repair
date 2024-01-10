@@ -20,6 +20,7 @@ class _UserMechanicListState extends State<UserMechanicList> {
     return DefaultTabController(length: 2,initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
             backgroundColor: Color(0xffCFE2FF),
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
