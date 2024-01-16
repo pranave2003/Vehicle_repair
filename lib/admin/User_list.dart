@@ -58,7 +58,7 @@ class _UserListState extends State<UserList> {
                         children: [
                           Text(user[index]['phone']),
                           Text(user[index]['Mail']),
-                          Text(user[index]['passwoord']),
+                          Text(user[index]['Location']),
                           user[index]['status'] == 0
                               ? Row(
                                   children: [

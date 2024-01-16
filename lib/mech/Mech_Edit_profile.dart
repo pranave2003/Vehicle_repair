@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Mech_profile.dart';
 
@@ -12,6 +14,45 @@ class MechEditProfile extends StatefulWidget {
 }
 
 class _MechEditProfileState extends State<MechEditProfile> {
+  Future<void> update() async {
+    await FirebaseFirestore.instance.collection('mechsighn').doc(ID).update({});
+  }
+  void initState() {
+    getData();
+  }
+  Future<void> getData() async {
+    SharedPreferences spref = await SharedPreferences.getInstance();
+    setState(() {
+      nm = spref.getString("name");
+      ph = spref.getString('phone');
+      em = spref.getString("email");
+      ID = spref.getString("id");
+      //
+      ex=spref.getString('exp');
+      sn=spref.getString("spname");
+      lc=spref.getString('loc');
+
+      spref.getString(
+        "id",
+      );
+      spref.setString("name", nm);
+      spref.setString("phone", ph);
+      spref.setString("email", em);
+      spref.setString('exp', ex);
+      spref.setString('spname', sn);
+      spref.setString('loc', lc);
+
+      print(nm.toString());
+    });
+    print("Updated");
+  }
+  var nm;
+  var ph;
+  var em;
+  var ID;
+  var ex;
+  var sn;
+  var lc;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,7 +108,7 @@ class _MechEditProfileState extends State<MechEditProfile> {
                           height: 50.h,
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text("Name",
+                            child: Text(nm,
                                 style: TextStyle(fontWeight: FontWeight.w700)),
                           ),
                           decoration: BoxDecoration(
@@ -87,7 +128,7 @@ class _MechEditProfileState extends State<MechEditProfile> {
                           height: 50.h,
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(" User Name",
+                            child: Text(nm,
                                 style: TextStyle(fontWeight: FontWeight.w700)),
                           ),
                           decoration: BoxDecoration(
@@ -107,7 +148,7 @@ class _MechEditProfileState extends State<MechEditProfile> {
                           height: 50.h,
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text("phone number",
+                            child: Text(ph,
                                 style: TextStyle(fontWeight: FontWeight.w700)),
                           ),
                           decoration: BoxDecoration(
@@ -127,7 +168,8 @@ class _MechEditProfileState extends State<MechEditProfile> {
                           height: 50.h,
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text("Email",
+                            child: Text(em,
+                                // email
                                 style: TextStyle(fontWeight: FontWeight.w700)),
                           ),
                           decoration: BoxDecoration(
@@ -147,7 +189,8 @@ class _MechEditProfileState extends State<MechEditProfile> {
                           height: 50.h,
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text("experience",
+                            child: Text(ex,
+                                // experience
                                 style: TextStyle(fontWeight: FontWeight.w700)),
                           ),
                           decoration: BoxDecoration(
@@ -167,7 +210,8 @@ class _MechEditProfileState extends State<MechEditProfile> {
                           height: 50.h,
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text("Location",
+                            child: Text(lc,
+                                // location
                                 style: TextStyle(fontWeight: FontWeight.w700)),
                           ),
                           decoration: BoxDecoration(
@@ -187,7 +231,8 @@ class _MechEditProfileState extends State<MechEditProfile> {
                           height: 50.h,
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text("Shop Name",
+                            child: Text(sn,
+                                // shopename
                                 style: TextStyle(fontWeight: FontWeight.w700)),
                           ),
                           decoration: BoxDecoration(

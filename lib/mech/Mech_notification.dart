@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,58 +14,62 @@ class _MechNotificationState extends State<MechNotification> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffE8F1FF),
       appBar: AppBar(
-          leading: IconButton(onPressed: () {
-Navigator.of(context).pop();
-          }, icon: Icon(Icons.arrow_back_ios)),
-          title: Center(child: Text("Notification")),
-          backgroundColor: Color(0xffCFE2FF)),
-      body: Padding(
-        padding: EdgeInsets.all(20.sp),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-                height: 100.h,
-                width: 300.w,
-                decoration: BoxDecoration(
-                  border: Border.all(),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+        backgroundColor: Color(0xffE8F1FF),
+      ),
+      body: FutureBuilder(
+        future: FirebaseFirestore.instance.collection("Notification").get(),
+        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return LinearProgressIndicator(color: Colors.red,);
+          }
+          if (snapshot.hasError) {
+            return Center(
+              child: Text("Error:${snapshot.error}"),
+            );
+          }
+          final Notifi=snapshot.data?.docs??[];
+          return  ListView.builder(
+            itemCount: Notifi.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: EdgeInsets.all(10.sp),
+                child: Container(
+
+                  color: Colors.white,
+                  child: Column(children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "Admin notification",
-                            style: TextStyle(color: Colors.grey, fontSize: 15),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("10:00 am"),
+                          child: Text(Notifi[index]['matter'],
+                              style: TextStyle(fontWeight: FontWeight.w600)),
                         )
                       ],
                     ),
-                    Row(mainAxisAlignment: MainAxisAlignment.end,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "10/05/2023",
-                            style: TextStyle(color: Colors.grey),
-                          ),
+                          child: SizedBox(
+                              width: 350.w,
+                              child: Text(
+                                  Notifi[index]['content'])),
                         )
                       ],
                     )
-                  ],
-                )),
-          ],
-        ),
+                  ]),
+                ),
+              );
+            },
+          );
+        },
+
       ),
+
     );
   }
 }

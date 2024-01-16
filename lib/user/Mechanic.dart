@@ -14,13 +14,11 @@ class _MechanicState extends State<Mechanic> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.builder(
-        itemCount: 5,
+        itemCount: 3,
         itemBuilder: (context, index) {
           return Padding(
             padding: EdgeInsets.all(10.sp),
             child: Container(
-              height: 150.h,
-              width: 100.w,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: Color(0xffCFE2FF)),
@@ -66,10 +64,8 @@ class _MechanicState extends State<Mechanic> {
                         ],
                       ),
                     ),
-
                   ],
                 )
-
               ]),
             ),
           );

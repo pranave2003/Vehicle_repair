@@ -99,7 +99,7 @@ class _AdminUserState extends State<AdminUser> {
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text("Name",
+                              child: Text(user!['username'],
                                   style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 18)),
@@ -107,7 +107,7 @@ class _AdminUserState extends State<AdminUser> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                "Location",
+                                user!['Location'],
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600, fontSize: 20),
                               ),
@@ -213,7 +213,7 @@ class _AdminUserState extends State<AdminUser> {
                                 readOnly: true,
                                 decoration: InputDecoration(
                                     border: InputBorder.none,
-                                    hintText:  user!['Mail'],
+                                    hintText: user!['Mail'],
                                     hintStyle:
                                         TextStyle(color: Colors.black87))),
                           ),
@@ -224,78 +224,76 @@ class _AdminUserState extends State<AdminUser> {
                       ],
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 130.h),
-                      child: user!['status'] == 0?
-                           Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Container(
-                                  width: 150.w,
-                                  height: 50.h,
-                                  decoration: BoxDecoration(
-                                      color: Color(0xff73ABFF),
-                                      borderRadius:
-                                          BorderRadius.circular(5.sp)),
-                                  child: TextButton(
-                                      onPressed: () {
-                                        accept(widget.id);
-                                      },
-                                      child: Text(
-                                        "Accept",
-                                        style: TextStyle(color: Colors.white),
-                                      )),
-                                ),
-                                // second
-                                Container(
-                                  width: 150.w,
-                                  height: 50.h,
-                                  decoration: BoxDecoration(
-                                      color: Color(0xffFF9F9D),
-                                      borderRadius:
-                                          BorderRadius.circular(5.sp)),
-                                  child: TextButton(
-                                      onPressed: () {
-                                        rejects(widget.id);
-
-                                      },
-                                      child: Text(
-                                        "reject",
-                                        style: TextStyle(color: Colors.white),
-                                      )),
-                                )
-                              ],
-                            )
-                          : user!['status'] == 1
-                              ? Container(
-                                  width: 150.w,
-                                  height: 50.h,
-                                  decoration: BoxDecoration(
-                                      color: Colors.green,
-                                      borderRadius:
-                                          BorderRadius.circular(5.sp)),
-                                  child: TextButton(
-                                      onPressed: () {},
-                                      child: Text(
-                                        "Accepted",
-                                        style: TextStyle(color: Colors.white),
-                                      )),
-                                )
-                              :
-                      Container(
-                                  width: 150.w,
-                                  height: 50.h,
-                                  decoration: BoxDecoration(
-                                      color: Colors.red,
-                                      borderRadius:
-                                          BorderRadius.circular(5.sp)),
-                                  child: TextButton(
-                                      onPressed: () {},
-                                      child: Text(
-                                        "Rejected",
-                                        style: TextStyle(color: Colors.white),
-                                      )),
-                                )
-                    )
+                        padding: EdgeInsets.only(top: 130.h),
+                        child: user!['status'] == 0
+                            ? Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Container(
+                                    width: 150.w,
+                                    height: 50.h,
+                                    decoration: BoxDecoration(
+                                        color: Color(0xff73ABFF),
+                                        borderRadius:
+                                            BorderRadius.circular(5.sp)),
+                                    child: TextButton(
+                                        onPressed: () {
+                                          accept(widget.id);
+                                        },
+                                        child: Text(
+                                          "Accept",
+                                          style: TextStyle(color: Colors.white),
+                                        )),
+                                  ),
+                                  // second
+                                  Container(
+                                    width: 150.w,
+                                    height: 50.h,
+                                    decoration: BoxDecoration(
+                                        color: Color(0xffFF9F9D),
+                                        borderRadius:
+                                            BorderRadius.circular(5.sp)),
+                                    child: TextButton(
+                                        onPressed: () {
+                                          rejects(widget.id);
+                                        },
+                                        child: Text(
+                                          "reject",
+                                          style: TextStyle(color: Colors.white),
+                                        )),
+                                  )
+                                ],
+                              )
+                            : user!['status'] == 1
+                                ? Container(
+                                    width: 150.w,
+                                    height: 50.h,
+                                    decoration: BoxDecoration(
+                                        color: Colors.green,
+                                        borderRadius:
+                                            BorderRadius.circular(5.sp)),
+                                    child: TextButton(
+                                        onPressed: () {},
+                                        child: Text(
+                                          "Accepted",
+                                          style: TextStyle(color: Colors.white),
+                                        )),
+                                  )
+                                : Container(
+                                    width: 150.w,
+                                    height: 50.h,
+                                    decoration: BoxDecoration(
+                                        color: Colors.red,
+                                        borderRadius:
+                                            BorderRadius.circular(5.sp)),
+                                    child: TextButton(
+                                        onPressed: () {},
+                                        child: Text(
+                                          "Rejected",
+                                          style: TextStyle(color: Colors.white),
+                                        )),
+                                  ))
                   ]),
                 );
               },

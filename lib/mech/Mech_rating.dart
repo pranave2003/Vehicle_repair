@@ -14,7 +14,7 @@ class _MechRatingState extends State<MechRating> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(automaticallyImplyLeading: false,
           backgroundColor: Color(0xffCFE2FF),
           title: Row(
             children: [

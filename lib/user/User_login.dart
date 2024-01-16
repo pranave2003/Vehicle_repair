@@ -217,7 +217,7 @@ class _UserloginState extends State<Userlogin> {
     final user = await FirebaseFirestore.instance
         .collection('User')
         .where('Mail', isEqualTo: username.text)
-        .where('passwoord', isEqualTo: password.text)
+        .where('password', isEqualTo: password.text)
         .where('status', isEqualTo: 1)
         .get();
     if (user.docs.isNotEmpty) {

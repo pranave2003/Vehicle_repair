@@ -120,7 +120,7 @@ class _AdminMechanicState extends State<AdminMechanic> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    "Location",
+                    mesign!['Location'],
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600, fontSize: 20),
                                   ),
@@ -329,7 +329,7 @@ class _AdminMechanicState extends State<AdminMechanic> {
                                   readOnly: true,
                                   decoration: InputDecoration(
                                       border: InputBorder.none,
-                                      hintText: mesign!['password'],
+                                      hintText: mesign!['Location'],
                                       hintStyle: TextStyle(color: Colors.black87))),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10.sp),

@@ -26,9 +26,7 @@ class _AdminNotificationState extends State<AdminNotification> {
         future: FirebaseFirestore.instance.collection("Notification").get(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: LinearProgressIndicator(color: Colors.red,),
-            );
+            return LinearProgressIndicator(color: Colors.red,);
           }
           if (snapshot.hasError) {
             return Center(

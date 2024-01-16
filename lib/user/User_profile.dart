@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserProfile extends StatefulWidget {
   const UserProfile({super.key});
@@ -10,10 +12,41 @@ class UserProfile extends StatefulWidget {
 }
 
 class _UserProfileState extends State<UserProfile> {
+  Future<void> update() async {
+    await FirebaseFirestore.instance.collection('User').doc(ID).update({});
+  }
+
+  void initState() {
+    getData();
+  }
+
+  Future<void> getData() async {
+    SharedPreferences spref = await SharedPreferences.getInstance();
+    setState(() {
+      nm = spref.getString("name");
+      ph = spref.getString('phone');
+      em = spref.getString("email");
+      ID = spref.getString("id");
+      spref.getString(
+        "id",
+      );
+      spref.setString("name", nm);
+      spref.setString("phone", ph);
+      spref.setString("email", em);
+
+      print(nm.toString());
+    });
+    print("Updated");
+  }
+
+  var nm;
+  var ph;
+  var em;
+  var ID;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(children: [
@@ -26,9 +59,13 @@ class _UserProfileState extends State<UserProfile> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
-                      children: [IconButton(onPressed: () {
-                        Navigator.of(context).pop();
-                      }, icon: Icon(Icons.arrow_back_ios))],
+                      children: [
+                        IconButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            icon: Icon(Icons.arrow_back_ios))
+                      ],
                     ),
                   ),
                   Row(
@@ -41,17 +78,17 @@ class _UserProfileState extends State<UserProfile> {
                             width: 110.w,
                             decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image: AssetImage("assets/officedp.jpg"), fit: BoxFit.fill),
+                                    image: AssetImage("assets/officedp.jpg"),
+                                    fit: BoxFit.fill),
                                 borderRadius: BorderRadius.circular(130),
                                 color: Colors.grey),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text("Name",
+                            child: Text(nm,
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600, fontSize: 18)),
                           ),
-
                         ],
                       )
                     ],
@@ -78,9 +115,9 @@ class _UserProfileState extends State<UserProfile> {
                         width: 290.w,
                         height: 50.h,
                         child: TextFormField(
+                            controller: TextEditingController(text: nm),
                             decoration: InputDecoration(
                                 border: InputBorder.none,
-                                hintText: "  Name",
                                 hintStyle: TextStyle(color: Colors.grey))),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.sp),
@@ -111,11 +148,14 @@ class _UserProfileState extends State<UserProfile> {
                       Container(
                         width: 290.w,
                         height: 50.h,
-                        child: TextFormField(
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "   Phone number",
-                                hintStyle: TextStyle(color: Colors.grey))),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                              controller: TextEditingController(text: ph),
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintStyle: TextStyle(color: Colors.grey))),
+                        ),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.sp),
                             color: Color(0xffE8F1FF)),
@@ -148,9 +188,9 @@ class _UserProfileState extends State<UserProfile> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextFormField(
+                              controller: TextEditingController(text: em),
                               decoration: InputDecoration(
                                   border: InputBorder.none,
-                                  hintText: "Example@gmail.com",
                                   hintStyle: TextStyle(color: Colors.grey))),
                         ),
                         decoration: BoxDecoration(
@@ -160,8 +200,9 @@ class _UserProfileState extends State<UserProfile> {
                     ],
                   ),
                   Padding(
-                    padding:  EdgeInsets.only(top: 130.h),
-                    child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    padding: EdgeInsets.only(top: 130.h),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
                           width: 150.w,
@@ -177,7 +218,6 @@ class _UserProfileState extends State<UserProfile> {
                               )),
                         ),
                         // second
-
                       ],
                     ),
                   )
