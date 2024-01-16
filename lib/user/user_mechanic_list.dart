@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Mechanic.dart';
 import 'Requests.dart';
@@ -15,6 +16,37 @@ class UserMechanicList extends StatefulWidget {
 }
 
 class _UserMechanicListState extends State<UserMechanicList> {
+
+  void initState() {
+    getData();
+  }
+
+  Future<void> getData() async {
+    SharedPreferences spref = await SharedPreferences.getInstance();
+    setState(() {
+      nm = spref.getString("name");
+      ph = spref.getString('phone');
+      em = spref.getString("email");
+      ID = spref.getString("id");
+      path=spref.getString('paath');
+      spref.getString(
+        "id",
+      );
+      spref.setString("name", nm);
+      spref.setString("phone", ph);
+      spref.setString("email", em);
+      spref.setString('paath', path);
+
+      print(nm.toString());
+    });
+    print("Updated");
+  }
+
+  var nm;
+  var ph;
+  var em;
+  var ID;
+  var path;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(length: 2,initialIndex: 0,
@@ -29,7 +61,7 @@ class _UserMechanicListState extends State<UserMechanicList> {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return UserProfile();
                   },));
-                },child: CircleAvatar(backgroundImage: AssetImage("assets/bMan.png"))),
+                },child: CircleAvatar(backgroundImage:NetworkImage(path))),
                 Container(
                   height: 40.h,
                   width: 250.w,

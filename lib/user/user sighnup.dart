@@ -35,6 +35,7 @@ class _UserSighnupState extends State<UserSighnup> {
       "Mail": email.text,
       "Location": location.text,
       "password": Password.text,
+      "profilepath":imageUrl,
       "status": 0
     }).then((value) {
       print("Success");

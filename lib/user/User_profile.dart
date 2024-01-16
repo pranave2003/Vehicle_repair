@@ -27,12 +27,14 @@ class _UserProfileState extends State<UserProfile> {
       ph = spref.getString('phone');
       em = spref.getString("email");
       ID = spref.getString("id");
+      path=spref.getString('paath');
       spref.getString(
         "id",
       );
       spref.setString("name", nm);
       spref.setString("phone", ph);
       spref.setString("email", em);
+      spref.setString('paath', path);
 
       print(nm.toString());
     });
@@ -43,6 +45,7 @@ class _UserProfileState extends State<UserProfile> {
   var ph;
   var em;
   var ID;
+  var path;
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +81,7 @@ class _UserProfileState extends State<UserProfile> {
                             width: 110.w,
                             decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image: AssetImage("assets/officedp.jpg"),
+                                    image: NetworkImage(path),
                                     fit: BoxFit.fill),
                                 borderRadius: BorderRadius.circular(130),
                                 color: Colors.grey),

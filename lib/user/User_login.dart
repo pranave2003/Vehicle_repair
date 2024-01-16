@@ -23,6 +23,7 @@ class _UserloginState extends State<Userlogin> {
   String name = '';
   String email = '';
   String phone = '';
+  String path='';
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -225,11 +226,14 @@ class _UserloginState extends State<Userlogin> {
       name = user.docs[0]['username'];
       email = user.docs[0]['Mail'];
       phone = user.docs[0]['phone'];
+      path=user.docs[0]['profilepath'];
       SharedPreferences data = await SharedPreferences.getInstance();
       data.setString('id', id);
       data.setString('name', name);
       data.setString('email', email);
       data.setString('phone', phone);
+      data.setString('paath', path);
+
       Navigator.push(context, MaterialPageRoute(
         builder: (context) {
           return UserMechanicList();
