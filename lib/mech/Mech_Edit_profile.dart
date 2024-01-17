@@ -31,6 +31,7 @@ class _MechEditProfileState extends State<MechEditProfile> {
       ex=spref.getString('exp');
       sn=spref.getString("spname");
       lc=spref.getString('loc');
+      pth=spref.getString('paath');
 
       spref.getString(
         "id",
@@ -41,6 +42,7 @@ class _MechEditProfileState extends State<MechEditProfile> {
       spref.setString('exp', ex);
       spref.setString('spname', sn);
       spref.setString('loc', lc);
+      spref.setString('paath', pth);
 
       print(nm.toString());
     });
@@ -53,6 +55,7 @@ class _MechEditProfileState extends State<MechEditProfile> {
   var ex;
   var sn;
   var lc;
+  var pth;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,7 +91,7 @@ class _MechEditProfileState extends State<MechEditProfile> {
                             width: 120.w,
                             decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image: AssetImage("assets/officedp.jpg"),
+                                    image: NetworkImage(pth),
                                     fit: BoxFit.fill),
                                 borderRadius: BorderRadius.circular(130),
                                 color: Colors.grey),

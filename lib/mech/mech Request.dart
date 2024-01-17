@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Accept List.dart';
 import 'Mech_Edit_profile.dart';
@@ -15,6 +16,14 @@ class Request extends StatefulWidget {
 }
 
 class _RequestState extends State<Request> {
+  var nm;
+  var ph;
+  var em;
+  var ID;
+  var ex;
+  var sn;
+  var lc;
+  var pth;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(length: 2,
@@ -31,7 +40,7 @@ class _RequestState extends State<Request> {
                     },));
                   },
                     child: CircleAvatar(
-                        backgroundImage: AssetImage("assets/officedp.jpg"),radius: 30),
+                        backgroundImage: NetworkImage(pth),radius: 30),
                   ),
                 ),
                 Padding(
@@ -102,5 +111,36 @@ class _RequestState extends State<Request> {
         ]),
       ),
     );
+  }
+  void initState() {
+    getData();
+  }
+  Future<void> getData() async {
+    SharedPreferences spref = await SharedPreferences.getInstance();
+    setState(() {
+      nm = spref.getString("name");
+      ph = spref.getString('phone');
+      em = spref.getString("email");
+      ID = spref.getString("id");
+      //
+      ex=spref.getString('exp');
+      sn=spref.getString("spname");
+      lc=spref.getString('loc');
+      pth=spref.getString('paath');
+
+      spref.getString(
+        "id",
+      );
+      spref.setString("name", nm);
+      spref.setString("phone", ph);
+      spref.setString("email", em);
+      spref.setString('exp', ex);
+      spref.setString('spname', sn);
+      spref.setString('loc', lc);
+      spref.setString('paath', pth);
+
+      print(nm.toString());
+    });
+    print("Updated");
   }
 }

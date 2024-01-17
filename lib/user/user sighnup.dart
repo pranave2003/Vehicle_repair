@@ -17,9 +17,25 @@ class UserSighnup extends StatefulWidget {
 }
 
 class _UserSighnupState extends State<UserSighnup> {
+  List<String> locationlist = [
+    'Alappuzha',
+    'Ernakulam',
+    'Idukki',
+    'Kannur',
+    'Kasaragod',
+    'Kollam',
+    'Kottayam',
+    'Kozhikode',
+    'Malappuram',
+    'Pathanamthitta',
+    'Thiruvananthapuram',
+    'Thrissur',
+    'Wayanad',
+  ];
+  String? selectedvalue;
   XFile? _image;
 
-  var imageUrl;
+  var imageURL;
   //
   final formkey = GlobalKey<FormState>();
   //
@@ -27,15 +43,15 @@ class _UserSighnupState extends State<UserSighnup> {
   var Phonenumber = TextEditingController();
   var email = TextEditingController();
   var Password = TextEditingController();
-  var location = TextEditingController();
+
   Future<dynamic> sigh() async {
     await FirebaseFirestore.instance.collection('User').add({
       "username": Username.text,
       "phone": Phonenumber.text,
       "Mail": email.text,
-      "Location": location.text,
+      "Location": selectedvalue,
       "password": Password.text,
-      "profilepath":imageUrl,
+      "profilepath": imageURL,
       "status": 0
     }).then((value) {
       print("Success");
@@ -225,23 +241,29 @@ class _UserSighnupState extends State<UserSighnup> {
                   Container(
                     width: 290.w,
                     height: 50.h,
-                    child: TextFormField(
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'empty location';
-                          }
-                        },
-                        controller: location,
-                        decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "  Location",
-                            hintStyle: TextStyle(
-                              color: Colors.grey,
-                            ))),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.sp),
-                        color: Colors.white),
-                  )
+                      borderRadius: BorderRadius.circular(6).r,
+                      color: Colors.white,
+                    ),
+                    child: DropdownButton<String>(
+                        isExpanded: true,
+                        elevation: 0,
+                        dropdownColor: Colors.orange,
+                        hint: const Text("Location"),
+                        underline: const SizedBox(),
+                        value: selectedvalue,
+                        items: locationlist.map((String value) {
+                          return DropdownMenuItem<String>(
+                              value: value, child: Text(value));
+                        }).toList(),
+                        onChanged: (newvalue) {
+                          setState(() {
+                            selectedvalue = newvalue;
+                            print(selectedvalue);
+                          });
+                        },
+                        padding: const EdgeInsets.symmetric(horizontal: 10)),
+                  ),
                 ],
               ),
               //pass
@@ -285,22 +307,39 @@ class _UserSighnupState extends State<UserSighnup> {
                   )
                 ],
               ),
-              Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      "Upload your image",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                  IconButton(
-                      onPressed: () {
-                        pickimage();
-                      },
-                      icon: Icon(Icons.camera_alt)),
-                ],
+              Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child:
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      imageURL == null
+                          ? IconButton(
+                          onPressed: () {
+                            pickimage();
+                          },
+                          icon: Icon(Icons.image,color: Colors.blue,))
+                          : imageURL != null
+                          ? Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Column(
+                            children: [
+                              Icon(Icons.photo,color: Colors.green,),
+                              Text(
+                                "Image Uploaded",
+                                style: TextStyle(color: Colors.green),
+                              ),
+                            ],
+                          )
+
+                        ],
+                      )
+                          : Text("444 line")
+                    ],
+                  )
+
+
               ),
               //
 
@@ -314,10 +353,35 @@ class _UserSighnupState extends State<UserSighnup> {
                       width: 190.w,
                       height: 50.h,
                       child: TextButton(
-                          onPressed: () {
-                            uploadimage();
+                          onPressed: (){
                             if (formkey.currentState!.validate()) {
-                              sigh();
+                              if (selectedvalue == null) {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                    content: Text(
+                                      "Please choose your district",
+                                      style: TextStyle(color: Colors.red),
+                                    )));
+                              }
+
+                              if (_image == null) {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                    content: Text(
+                                      "Please upload image ",
+                                      style: TextStyle(color: Colors.red),
+                                    )));
+
+                                print("please pick image &");
+
+                                Center(
+                                    child: Text(
+                                      "Uploading error",
+                                      style: TextStyle(color: Colors.red),
+                                    ));
+                              } else {
+                                sigh();
+                              }
                             }
                           },
                           child: Text(
@@ -356,6 +420,7 @@ class _UserSighnupState extends State<UserSighnup> {
         setState(() {
           _image = pickedimage;
         });
+        print("Image upload succersfully");
         await uploadimage();
       }
     } catch (e) {
@@ -370,8 +435,15 @@ class _UserSighnupState extends State<UserSighnup> {
         Reference storrageReference =
             FirebaseStorage.instance.ref().child('profile/${_image!.path}');
         await storrageReference.putFile(File(_image!.path));
-         imageUrl = await storrageReference.getDownloadURL();
-      }
+        imageURL = await storrageReference.getDownloadURL();
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text(
+          "Uploaded succesfully",
+          style: TextStyle(color: Colors.green),
+        )));
+        print("/////////picked$imageURL");
+      } else
+        CircularProgressIndicator();
     } catch (e) {
       print("Error uploading image:$e");
     }

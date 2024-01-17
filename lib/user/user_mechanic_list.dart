@@ -24,17 +24,12 @@ class _UserMechanicListState extends State<UserMechanicList> {
   Future<void> getData() async {
     SharedPreferences spref = await SharedPreferences.getInstance();
     setState(() {
-      nm = spref.getString("name");
-      ph = spref.getString('phone');
-      em = spref.getString("email");
-      ID = spref.getString("id");
+
       path=spref.getString('paath');
       spref.getString(
         "id",
       );
-      spref.setString("name", nm);
-      spref.setString("phone", ph);
-      spref.setString("email", em);
+
       spref.setString('paath', path);
 
       print(nm.toString());

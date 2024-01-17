@@ -27,6 +27,7 @@ class _MechloginState extends State<Mechlogin> {
   String experience='';
   String Location='';
   String shopName='';
+  String path='';
 
   @override
   Widget build(BuildContext context) {
@@ -209,11 +210,13 @@ class _MechloginState extends State<Mechlogin> {
       experience=user.docs[0]['experience'];
       Location=user.docs[0]['Location'];
       shopName=user.docs[0]['shopename'];
+      path=user.docs[0]['MechProfilrpath'];
 
 
 
       SharedPreferences data = await SharedPreferences.getInstance();
       data.setString('id', id);
+      data.setString('paath', path);
       data.setString('name', name);
       data.setString('email', email);
       data.setString('phone', phone);
