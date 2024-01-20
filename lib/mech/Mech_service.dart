@@ -147,7 +147,7 @@ class _MechServiceState extends State<MechService> {
         .add({"Serviceinfo": Ser.text, "Status": 0}).then(
       (value) {
         Navigator.of(context).pop();
-        print("//////////service add sucesfully");
+        print("////////// service add sucesfully");
       },
     );
   }

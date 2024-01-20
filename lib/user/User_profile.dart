@@ -81,7 +81,7 @@ class _UserProfileState extends State<UserProfile> {
                             width: 110.w,
                             decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image: NetworkImage(path),
+                                    image: NetworkImage(path.toString()),
                                     fit: BoxFit.fill),
                                 borderRadius: BorderRadius.circular(130),
                                 color: Colors.grey),

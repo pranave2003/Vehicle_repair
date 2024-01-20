@@ -16,7 +16,7 @@ class _AdminloginState extends State<Adminlogin> {
   var Name = TextEditingController();
   var Pass = TextEditingController();
    login(){
-     if (Name.text=='admin@gmail.com' && Pass.text=='admin@123' ){
+     if (Name.text=='admin@gmail.com' && Pass.text=='123' ){
        Navigator.push(context, MaterialPageRoute(builder: (context) {
           return AdminHomeuser();
        },));

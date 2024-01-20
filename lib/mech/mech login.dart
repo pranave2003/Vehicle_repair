@@ -62,7 +62,7 @@ class _MechloginState extends State<Mechlogin> {
                       20,
                     ),
                     child: Text(
-                      "LOGIN",
+                      " MECHANIC  LOGIN",
                       style:
                           TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
                     ),

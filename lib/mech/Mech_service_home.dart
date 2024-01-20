@@ -13,11 +13,10 @@ class MechServiceHome extends StatefulWidget {
 }
 
 class _MechServiceHomeState extends State<MechServiceHome> {
-  int indexNum=0;
-  List page=[Request(),MechService(),MechRating()];
+  int indexNum = 0;
+  List page = [Request(), MechService(), MechRating()];
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: indexNum,
@@ -35,7 +34,6 @@ class _MechServiceHomeState extends State<MechServiceHome> {
         ],
       ),
       body: page[indexNum],
-      
     );
   }
 }
