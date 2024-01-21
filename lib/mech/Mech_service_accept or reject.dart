@@ -27,8 +27,7 @@ class _MechServiceAcceptState extends State<MechServiceAccept> {
           .collection('UserRequest')
           .doc(id)
           .update({'status': 1});
-      //
-      //
+      
       //
       //
     });
@@ -95,7 +94,9 @@ class _MechServiceAcceptState extends State<MechServiceAccept> {
             Padding(
               padding: EdgeInsets.only(top: 250.h, left: 90.w),
               child: Column(
+
                 children: [
+                  Row(children: [Text("sf")],),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(

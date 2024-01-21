@@ -15,14 +15,15 @@ class Adminlogin extends StatefulWidget {
 class _AdminloginState extends State<Adminlogin> {
   var Name = TextEditingController();
   var Pass = TextEditingController();
-   login(){
-     if (Name.text=='admin@gmail.com' && Pass.text=='123' ){
-       Navigator.push(context, MaterialPageRoute(builder: (context) {
+  login() {
+    if (Name.text == 'admin@gmail.com' && Pass.text == '123') {
+      Navigator.push(context, MaterialPageRoute(
+        builder: (context) {
           return AdminHomeuser();
-       },));
-     }
-   }
-
+        },
+      ));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +58,7 @@ class _AdminloginState extends State<Adminlogin> {
                       20,
                     ),
                     child: Text(
-                      "LOGIN",
+                      "ADMIN LOGIN",
                       style:
                           TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
                     ),
@@ -142,7 +143,9 @@ class _AdminloginState extends State<Adminlogin> {
                       width: 190.w,
                       height: 50.h,
                       child: TextButton(
-                          onPressed: () {login();},
+                          onPressed: () {
+                            login();
+                          },
                           child: Text(
                             "LOGIN",
                             style: TextStyle(color: Colors.white),
