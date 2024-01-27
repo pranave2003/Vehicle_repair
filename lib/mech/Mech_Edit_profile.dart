@@ -17,9 +17,11 @@ class _MechEditProfileState extends State<MechEditProfile> {
   Future<void> update() async {
     await FirebaseFirestore.instance.collection('mechsighn').doc(ID).update({});
   }
+
   void initState() {
     getData();
   }
+
   Future<void> getData() async {
     SharedPreferences spref = await SharedPreferences.getInstance();
     setState(() {
@@ -28,10 +30,10 @@ class _MechEditProfileState extends State<MechEditProfile> {
       em = spref.getString("email");
       ID = spref.getString("id");
       //
-      ex=spref.getString('exp');
-      sn=spref.getString("spname");
-      lc=spref.getString('loc');
-      pth=spref.getString('paath');
+      ex = spref.getString('exp');
+      sn = spref.getString("spname");
+      lc = spref.getString('loc');
+      pth = spref.getString('paath');
 
       spref.getString(
         "id",
@@ -48,6 +50,7 @@ class _MechEditProfileState extends State<MechEditProfile> {
     });
     print("Updated");
   }
+
   var nm;
   var ph;
   var em;
@@ -74,10 +77,19 @@ class _MechEditProfileState extends State<MechEditProfile> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
-                            onPressed: () {Navigator.of(context).pop();}, icon: Icon(Icons.arrow_back_ios)),
-                        IconButton(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) {
-                          return MechProfile();
-                        },));}, icon: Icon(Icons.edit))
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            icon: Icon(Icons.arrow_back_ios)),
+                        IconButton(
+                            onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(
+                                builder: (context) {
+                                  return MechProfile();
+                                },
+                              ));
+                            },
+                            icon: Icon(Icons.edit))
                       ],
                     ),
                   ),
@@ -91,8 +103,7 @@ class _MechEditProfileState extends State<MechEditProfile> {
                             width: 120.w,
                             decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image: NetworkImage(pth),
-                                    fit: BoxFit.fill),
+                                    image: NetworkImage(pth), fit: BoxFit.fill),
                                 borderRadius: BorderRadius.circular(130),
                                 color: Colors.grey),
                           ),

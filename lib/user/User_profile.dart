@@ -27,7 +27,7 @@ class _UserProfileState extends State<UserProfile> {
       ph = spref.getString('phone');
       em = spref.getString("email");
       ID = spref.getString("id");
-      path=spref.getString('paath');
+      path = spref.getString('paath');
       spref.getString(
         "id",
       );

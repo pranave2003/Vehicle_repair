@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vehicle_project/splash.dart';
 import 'package:vehicle_project/user%20and%20mechanic%20list.dart';
-import 'package:vehicle_project/user%20or%20mech.dart';
+
 import 'package:vehicle_project/user/Mechanic.dart';
 import 'package:vehicle_project/user/Mechanic_faild_page.dart';
 import 'package:vehicle_project/user/Requests.dart';
@@ -41,7 +41,8 @@ import 'mech/mech Request.dart';
 import 'mech/mech login.dart';
 import 'mech/mech_signup.dart';
 
-void main()async { WidgetsFlutterBinding.ensureInitialized();
+void main()async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
