@@ -11,7 +11,7 @@ class UserNotification extends StatefulWidget {
 }
 
 class _UserNotificationState extends State<UserNotification> {
-  final lists=FirebaseFirestore.instance.collection("Notification");
+  final lists = FirebaseFirestore.instance.collection("Notification");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +36,7 @@ class _UserNotificationState extends State<UserNotification> {
               child: Text("Error:${snapshot.error}"),
             );
           }
-          final UserNoti=snapshot.data?.docs??[];
+          final UserNoti = snapshot.data?.docs ?? [];
           return ListView.builder(
             itemCount: UserNoti.length,
             itemBuilder: (context, index) {
@@ -46,7 +46,6 @@ class _UserNotificationState extends State<UserNotification> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-
                         width: 300.w,
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.grey),
@@ -60,9 +59,10 @@ class _UserNotificationState extends State<UserNotification> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: SizedBox(width: 200,
+                                  child: SizedBox(
+                                    width: 200,
                                     child: Text(
-                                     UserNoti[index]['content'],
+                                      UserNoti[index]['content'],
                                       style: TextStyle(
                                           color: Colors.black87, fontSize: 15),
                                     ),
@@ -70,7 +70,9 @@ class _UserNotificationState extends State<UserNotification> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text( UserNoti[index]['Time'],),
+                                  child: Text(
+                                    UserNoti[index]['Time'],
+                                  ),
                                 )
                               ],
                             ),
@@ -94,7 +96,6 @@ class _UserNotificationState extends State<UserNotification> {
             },
           );
         },
-
       ),
     );
   }

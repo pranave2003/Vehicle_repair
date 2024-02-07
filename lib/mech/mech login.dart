@@ -15,19 +15,19 @@ class Mechlogin extends StatefulWidget {
 }
 
 class _MechloginState extends State<Mechlogin> {
-  var Username=TextEditingController();
-  var Password=TextEditingController();
+  var Username = TextEditingController();
+  var Password = TextEditingController();
   //
-  final formkey=GlobalKey<FormState>();
+  final formkey = GlobalKey<FormState>();
   //
   String id = '';
   String name = '';
   String email = '';
   String phone = '';
-  String experience='';
-  String Location='';
-  String shopName='';
-  String path='';
+  String experience = '';
+  String Location = '';
+  String shopName = '';
+  String path = '';
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +90,7 @@ class _MechloginState extends State<Mechlogin> {
                       width: 290.w,
                       height: 50.h,
                       child: TextFormField(
-                        controller: Username,
+                          controller: Username,
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: "  Email",
@@ -126,7 +126,7 @@ class _MechloginState extends State<Mechlogin> {
                       width: 290.w,
                       height: 50.h,
                       child: TextFormField(
-                        controller:  Password,
+                          controller: Password,
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: "  Enter Password",
@@ -180,14 +180,22 @@ class _MechloginState extends State<Mechlogin> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("Do you have account ?"),
-                    TextButton(onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return Mechsignup();
-                      },));
-                    }, child: Text("Sign up",style: TextStyle(color: Colors.blueAccent),))
+                    TextButton(
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return Mechsignup();
+                            },
+                          ));
+                        },
+                        child: Text(
+                          "Sign up",
+                          style: TextStyle(color: Colors.blueAccent),
+                        ))
                   ],
                 ),
               )
@@ -195,6 +203,7 @@ class _MechloginState extends State<Mechlogin> {
           ),
         ));
   }
+
   void mechLogin() async {
     final user = await FirebaseFirestore.instance
         .collection('mechsighn')
@@ -207,12 +216,10 @@ class _MechloginState extends State<Mechlogin> {
       name = user.docs[0]['username'];
       email = user.docs[0]['email'];
       phone = user.docs[0]['Phonenumber'];
-      experience=user.docs[0]['experience'];
-      Location=user.docs[0]['Location'];
-      shopName=user.docs[0]['shopename'];
-      path=user.docs[0]['MechProfilrpath'];
-
-
+      experience = user.docs[0]['experience'];
+      Location = user.docs[0]['Location'];
+      shopName = user.docs[0]['shopename'];
+      path = user.docs[0]['MechProfilrpath'];
 
       SharedPreferences data = await SharedPreferences.getInstance();
       data.setString('id', id);
@@ -221,9 +228,8 @@ class _MechloginState extends State<Mechlogin> {
       data.setString('email', email);
       data.setString('phone', phone);
       data.setString("exp", experience);
-        data.setString('loc', Location);
+      data.setString('loc', Location);
       data.setString('spname', shopName);
-
 
       Navigator.push(context, MaterialPageRoute(
         builder: (context) {
@@ -231,13 +237,11 @@ class _MechloginState extends State<Mechlogin> {
         },
       ));
     } else {
-
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text(
-            "username and password error",
-            style: TextStyle(color: Colors.red),
-          )));
+        "username and password error",
+        style: TextStyle(color: Colors.red),
+      )));
     }
-
   }
 }

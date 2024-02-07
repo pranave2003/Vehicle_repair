@@ -17,7 +17,6 @@ import 'package:vehicle_project/user/user%20sighnup.dart';
 import 'package:vehicle_project/user/user_mechanic_detail%20page.dart';
 import 'package:vehicle_project/user/user_mechanic_list.dart';
 
-
 import 'admin/Admin_Mechanic.dart';
 import 'admin/Admin_Notification.dart';
 import 'admin/Admin_Payment.dart';
@@ -41,7 +40,7 @@ import 'mech/mech Request.dart';
 import 'mech/mech login.dart';
 import 'mech/mech_signup.dart';
 
-void main()async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -55,14 +54,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(builder: (context, child) =>
-       MaterialApp(debugShowCheckedModeBanner:  false,
+    return ScreenUtilInit(
+      builder: (context, child) => MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: Abcs()),
+          home: MechNotification()),
       designSize: Size(390, 844),
     );
   }
