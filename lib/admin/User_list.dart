@@ -31,6 +31,7 @@ class _UserListState extends State<UserList> {
             );
           }
           final user = snapshot.data?.docs ?? [];
+
           // print(user[0].id);
           return ListView.builder(
             itemCount: user.length,
@@ -65,26 +66,41 @@ class _UserListState extends State<UserList> {
                                     Container(
                                       width: 70.w,
                                       height: 20.h,
-                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.grey),
-                                      child: Center(child: Text("pending",style: TextStyle(color: Colors.white))),
-
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          color: Colors.grey),
+                                      child: Center(
+                                          child: Text("pending",
+                                              style: TextStyle(
+                                                  color: Colors.white))),
                                     )
                                   ],
                                 )
                               : user[index]['status'] == 1
                                   ? Container(
-                            width: 70.w,
-                            height: 20.h,
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.green),
-                            child: Center(child: Text("Accepted",style: TextStyle(color: Colors.white))),
-
-                          )
+                                      width: 70.w,
+                                      height: 20.h,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          color: Colors.green),
+                                      child: Center(
+                                          child: Text("Accepted",
+                                              style: TextStyle(
+                                                  color: Colors.white))),
+                                    )
                                   : Container(
                                       width: 70.w,
                                       height: 20.h,
-                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.red),
-                                      child: Center(child: Text("Rejected",style: TextStyle(color: Colors.white))),
-                                      
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          color: Colors.red),
+                                      child: Center(
+                                          child: Text("Rejected",
+                                              style: TextStyle(
+                                                  color: Colors.white))),
                                     )
                         ]),
                   ),
