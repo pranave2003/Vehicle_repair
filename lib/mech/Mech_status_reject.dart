@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'Mech_Status complted.dart';
+
 class MechStatusReject extends StatefulWidget {
   const MechStatusReject({super.key});
 
@@ -10,15 +12,19 @@ class MechStatusReject extends StatefulWidget {
 }
 
 class _MechStatusRejectState extends State<MechStatusReject> {
+  String gender = "";
   @override
   Widget build(BuildContext context) {
-    String gender = "";
     return Scaffold(
       body: ListView(children: [
         SafeArea(
           child: Row(
             children: [
-              IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
+              IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: Icon(Icons.arrow_back_ios)),
             ],
           ),
         ),
@@ -86,11 +92,16 @@ class _MechStatusRejectState extends State<MechStatusReject> {
                   style:
                       TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w900),
                 ),
-                value: "user",
+                value: "complete",
                 groupValue: gender,
                 onChanged: (value) {
                   setState(() {
                     gender = value.toString();
+                    // Navigator.pushReplacement(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //       builder: (context) => MechStatusCompleated(),
+                    //     ));
                   });
                 }),
             RadioListTile(
@@ -98,7 +109,7 @@ class _MechStatusRejectState extends State<MechStatusReject> {
                 title: Text("Not completed",
                     style: TextStyle(
                         fontSize: 15.sp, fontWeight: FontWeight.w900)),
-                value: "Event",
+                value: "notcomplete",
                 groupValue: gender,
                 onChanged: (value) {
                   setState(() {
@@ -127,10 +138,10 @@ class _MechStatusRejectState extends State<MechStatusReject> {
               decoration: BoxDecoration(
                   border: Border.all(width: 1),
                   borderRadius: BorderRadius.circular(15)),
-              child: Center(
-                  child: TextFormField(
+              child: TextFormField(
+                maxLines: 10,
                 decoration: InputDecoration(border: InputBorder.none),
-              )),
+              ),
             )
           ],
         ),

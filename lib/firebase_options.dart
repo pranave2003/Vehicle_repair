@@ -44,38 +44,38 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDpxViBHCfBMiRABHipLopfG5XTpGjFClg',
-    appId: '1:479438873302:web:71734f4e5350cd4e6e1f77',
-    messagingSenderId: '479438873302',
-    projectId: 'vehiclerepair-95963',
-    authDomain: 'vehiclerepair-95963.firebaseapp.com',
-    storageBucket: 'vehiclerepair-95963.appspot.com',
-    measurementId: 'G-YWZ7F7Y6ME',
+    apiKey: 'AIzaSyDsDzJyz21E_m5k8B4Fiy7DLwKMzFwyEQ0',
+    appId: '1:414003221644:web:138ce777b6d8e4570217a9',
+    messagingSenderId: '414003221644',
+    projectId: 'brakedown-40087',
+    authDomain: 'brakedown-40087.firebaseapp.com',
+    storageBucket: 'brakedown-40087.appspot.com',
+    measurementId: 'G-74MMTJ7SG5',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyC46fo-KcO09CNa53Tm_roAF1wwCiZtXBo',
-    appId: '1:479438873302:android:be0642bac44c03f46e1f77',
-    messagingSenderId: '479438873302',
-    projectId: 'vehiclerepair-95963',
-    storageBucket: 'vehiclerepair-95963.appspot.com',
+    apiKey: 'AIzaSyD5GW3VTuedSx_9C8Es75OQ4yi8BWrKyTI',
+    appId: '1:414003221644:android:6097751dd42685680217a9',
+    messagingSenderId: '414003221644',
+    projectId: 'brakedown-40087',
+    storageBucket: 'brakedown-40087.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyD2cSiaXY0fgFYwn9AmTUPzbgXquuIELFk',
-    appId: '1:479438873302:ios:8d0f5888807d06ee6e1f77',
-    messagingSenderId: '479438873302',
-    projectId: 'vehiclerepair-95963',
-    storageBucket: 'vehiclerepair-95963.appspot.com',
+    apiKey: 'AIzaSyDoe4n8meX4juJP0lQ-TDJp9gcfhcEGdNk',
+    appId: '1:414003221644:ios:99bb1e9d2fae76ac0217a9',
+    messagingSenderId: '414003221644',
+    projectId: 'brakedown-40087',
+    storageBucket: 'brakedown-40087.appspot.com',
     iosBundleId: 'com.example.vehicleProject',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyD2cSiaXY0fgFYwn9AmTUPzbgXquuIELFk',
-    appId: '1:479438873302:ios:5603d41eca8cd5476e1f77',
-    messagingSenderId: '479438873302',
-    projectId: 'vehiclerepair-95963',
-    storageBucket: 'vehiclerepair-95963.appspot.com',
+    apiKey: 'AIzaSyDoe4n8meX4juJP0lQ-TDJp9gcfhcEGdNk',
+    appId: '1:414003221644:ios:69ae890f90b696880217a9',
+    messagingSenderId: '414003221644',
+    projectId: 'brakedown-40087',
+    storageBucket: 'brakedown-40087.appspot.com',
     iosBundleId: 'com.example.vehicleProject.RunnerTests',
   );
 }

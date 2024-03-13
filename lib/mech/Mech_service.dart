@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'Mech_Add_service.dart';
 import 'Mech_service_home.dart';
 
 class MechService extends StatefulWidget {
@@ -61,7 +60,14 @@ class _MechServiceState extends State<MechService> {
                                           fontWeight: FontWeight.w700)),
                                 ),
                                 IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      setState(() {
+                                        FirebaseFirestore.instance
+                                            .collection('Service')
+                                            .doc(Serviceeee[index].id)
+                                            .delete();
+                                      });
+                                    },
                                     icon: Icon(Icons.delete_rounded))
                               ],
                             ),
@@ -144,11 +150,10 @@ class _MechServiceState extends State<MechService> {
   Future service() async {
     await FirebaseFirestore.instance
         .collection("Service")
-        .add({"Serviceinfo": Ser.text, "Status": 0}).then(
-      (value) {
-        Navigator.of(context).pop();
-        print("////////// service add sucesfully");
-      },
-    );
+        .add({"Serviceinfo": Ser.text, "Status": 0});
+
+    Navigator.of(context).pop();
+
+    print("////////// service add successfully");
   }
 }

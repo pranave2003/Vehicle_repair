@@ -63,7 +63,7 @@ class _AcceptListState extends State<AcceptList> {
             itemBuilder: (context, index) {
               return InkWell(onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return MechStatusCompleated();
+                  return MechStatusCompleated(id:AcceptList[index].id);
                 },));
               },
                 child: Padding(

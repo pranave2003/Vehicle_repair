@@ -1,29 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:vehicle_project/splash.dart';
-import 'package:vehicle_project/user%20and%20mechanic%20list.dart';
-
-import 'package:vehicle_project/user/Mechanic.dart';
-import 'package:vehicle_project/user/Mechanic_faild_page.dart';
-import 'package:vehicle_project/user/Requests.dart';
-import 'package:vehicle_project/user/User_Payment_Page.dart';
-import 'package:vehicle_project/user/User_login.dart';
-import 'package:vehicle_project/user/User_mech_bill_%20page.dart';
-import 'package:vehicle_project/user/User_notification.dart';
-import 'package:vehicle_project/user/User_profile.dart';
-import 'package:vehicle_project/user/User_rating.dart';
-import 'package:vehicle_project/user/user%20sighnup.dart';
-import 'package:vehicle_project/user/user_mechanic_detail%20page.dart';
-import 'package:vehicle_project/user/user_mechanic_list.dart';
-
-import 'admin/Admin_Mechanic.dart';
-import 'admin/Admin_Notification.dart';
-import 'admin/Admin_Payment.dart';
-import 'admin/Admin_User.dart';
-import 'admin/Admin_home_User.dart';
 import 'admin/Admin_login.dart';
-import 'admin/RadioButton.dart';
 import 'firebase_options.dart';
 import 'mech/Accept List.dart';
 import 'mech/Mech_Edit_profile.dart';
@@ -62,7 +40,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: MechNotification()),
+          home: Mechlogin()),
       designSize: Size(390, 844),
     );
   }

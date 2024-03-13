@@ -48,11 +48,12 @@ class _UserListState extends State<UserList> {
                   },
                   child: ListTile(
                     tileColor: Colors.white,
-                    leading: Column(
-                      children: [
-                        Image.asset('assets/dp.png'),
-                      ],
-                    ),
+                    leading: CircleAvatar(backgroundImage: AssetImage("assets/dp.png"),),
+                    // Column(
+                    //   children: [
+                    //     Image.asset('assets/dp.png'),
+                    //   ],
+                    // ),
                     title: Text(user[index]['username']),
                     subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "479438873302",
-    "project_id": "vehiclerepair-95963",
-    "storage_bucket": "vehiclerepair-95963.appspot.com"
+    "project_number": "414003221644",
+    "project_id": "brakedown-40087",
+    "storage_bucket": "brakedown-40087.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:479438873302:android:be0642bac44c03f46e1f77",
+        "mobilesdk_app_id": "1:414003221644:android:6097751dd42685680217a9",
         "android_client_info": {
           "package_name": "com.example.vehicle_project"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyC46fo-KcO09CNa53Tm_roAF1wwCiZtXBo"
+          "current_key": "AIzaSyD5GW3VTuedSx_9C8Es75OQ4yi8BWrKyTI"
         }
       ],
       "services": {
