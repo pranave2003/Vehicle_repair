@@ -118,57 +118,62 @@ class _MechStatusRejectState extends State<MechStatusReject> {
                 }),
           ]),
         ),
-        Padding(
-          padding: EdgeInsets.all(30.sp),
-          child: Row(
-            children: [
-              Text(
-                "Reject reason",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-              )
-            ],
-          ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        Column(
           children: [
-            Container(
-              width: 300.w,
-              height: 200.h,
-              decoration: BoxDecoration(
-                  border: Border.all(width: 1),
-                  borderRadius: BorderRadius.circular(15)),
-              child: TextFormField(
-                maxLines: 10,
-                decoration: InputDecoration(border: InputBorder.none),
+            Padding(
+              padding: EdgeInsets.all(30.sp),
+              child: Row(
+                children: [
+                  Text(
+                    "Reject reason",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                  )
+                ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 300.w,
+                  height: 200.h,
+                  decoration: BoxDecoration(
+                      border: Border.all(width: 1),
+                      borderRadius: BorderRadius.circular(15)),
+                  child: TextFormField(
+                    maxLines: 10,
+                    decoration: InputDecoration(border: InputBorder.none),
+                  ),
+                )
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                top: 50.h,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                      width: 200.w,
+                      height: 50.h,
+                      decoration: BoxDecoration(
+                          color: Colors.blue.shade800,
+                          border: Border.all(width: 1),
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Center(
+                          child: TextButton(
+                              onPressed: () {},
+                              child: Text(
+                                "Submit",
+                                style: TextStyle(color: Colors.white),
+                              ))))
+                ],
               ),
             )
           ],
         ),
-        Padding(
-          padding: EdgeInsets.only(
-            top: 50.h,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                  width: 200.w,
-                  height: 50.h,
-                  decoration: BoxDecoration(
-                      color: Colors.blue.shade800,
-                      border: Border.all(width: 1),
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Center(
-                      child: TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Submit",
-                            style: TextStyle(color: Colors.white),
-                          ))))
-            ],
-          ),
-        )
+
       ]),
     );
   }

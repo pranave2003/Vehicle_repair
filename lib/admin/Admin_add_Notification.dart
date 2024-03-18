@@ -28,6 +28,7 @@ class _AdminAddNotificationState extends State<AdminAddNotification> {
         'Time': time.format(context),
         'date': DateFormat('dd/mm/yy').format(date)
       });
+      Navigator.of(context).pop();
     });
     Matter.clear();
     Content.clear();

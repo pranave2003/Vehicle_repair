@@ -100,8 +100,7 @@ class _AdminUserState extends State<AdminUser> {
                             padding: const EdgeInsets.all(8.0),
                             child: Text(user!['username'],
                                 style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 18)),
+                                    fontWeight: FontWeight.w600, fontSize: 18)),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -213,8 +212,7 @@ class _AdminUserState extends State<AdminUser> {
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   hintText: user!['Mail'],
-                                  hintStyle:
-                                      TextStyle(color: Colors.black87))),
+                                  hintStyle: TextStyle(color: Colors.black87))),
                         ),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.sp),
@@ -226,8 +224,7 @@ class _AdminUserState extends State<AdminUser> {
                       padding: EdgeInsets.only(top: 130.h),
                       child: user!['status'] == 0
                           ? Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Container(
                                   width: 150.w,

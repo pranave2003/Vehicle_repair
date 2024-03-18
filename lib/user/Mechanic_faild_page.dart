@@ -82,7 +82,8 @@ class _Mechanic_FaiodState extends State<Mechanic_Faiod> {
                                   itemBuilder: (Context, _) =>
                                       Icon(Icons.star, color: Colors.amber),
                                   onRatingUpdate: (rating) {}),
-                              IconButton(onPressed: () {}, icon: Icon(Icons.edit))
+                              IconButton(
+                                  onPressed: () {}, icon: Icon(Icons.edit))
                             ],
                           ),
                         ],
@@ -105,7 +106,11 @@ class _Mechanic_FaiodState extends State<Mechanic_Faiod> {
             ),
             Container(
                 height: 200.h,
-                width: 330.w,child: TextFormField(decoration: InputDecoration(hintText: "  Faild reason show",border: InputBorder.none)),
+                width: 330.w,
+                child: TextFormField(
+                    decoration: InputDecoration(
+                        hintText: "  Faild reason show",
+                        border: InputBorder.none)),
                 decoration: BoxDecoration(
                     border: Border.all(),
                     borderRadius: BorderRadius.circular(20))),
