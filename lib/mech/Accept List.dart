@@ -42,7 +42,7 @@ class _AcceptListState extends State<AcceptList> {
         future: FirebaseFirestore.instance
             .collection("UserRequest")
             .where("mechid", isEqualTo: ID)
-            .where("status", isEqualTo: 1)
+            .where("status", isEqualTo: "1")
 
             // .where("Location", isEqualTo: selectedvalue)
             .get(),
@@ -61,11 +61,14 @@ class _AcceptListState extends State<AcceptList> {
           return ListView.builder(
             itemCount: AcceptList.length,
             itemBuilder: (context, index) {
-              return InkWell(onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return MechStatusCompleated(id:AcceptList[index].id);
-                },));
-              },
+              return InkWell(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return MechStatusCompleated(id: AcceptList[index].id);
+                    },
+                  ));
+                },
                 child: Padding(
                   padding: EdgeInsets.all(10.sp),
                   child: Container(
@@ -103,23 +106,76 @@ class _AcceptListState extends State<AcceptList> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              height: 30.h,
-                              width: 100.w,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.red,
-                              ),
-                              child: Center(
-                                child: Text("payment Pending",
-                                    style: TextStyle(
-                                        fontSize: 10,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w500)),
-                              ),
-                            ),
-                          )
+                              padding: const EdgeInsets.all(8.0),
+                              child: AcceptList[index]['payment'] == '3'
+                                  ? Container(
+                                      height: 30.h,
+                                      width: 100.w,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.green,
+                                      ),
+                                      child: Center(
+                                        child: Text("payment request send",
+                                            style: TextStyle(
+                                                fontSize: 10,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w500)),
+                                      ),
+                                    )
+                                  : AcceptList[index]['payment'] == "4"
+                                      ? Container(
+                                          height: 30.h,
+                                          width: 100.w,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            color: Colors.red,
+                                          ),
+                                          child: Center(
+                                            child: Text("Payment request faild",
+                                                style: TextStyle(
+                                                    fontSize: 10,
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                          ),
+                                        )
+                                      : AcceptList[index]['payment'] == null
+                                          ? Container(
+                                              height: 30.h,
+                                              width: 100.w,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                color: Colors.yellow,
+                                              ),
+                                              child: Center(
+                                                child: Text("approved",
+                                                    style: TextStyle(
+                                                        fontSize: 10,
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.w500)),
+                                              ),
+                                            )
+                                          : Container(
+                                              height: 30.h,
+                                              width: 100.w,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                color: Colors.red,
+                                              ),
+                                              child: Center(
+                                                child: Text("approved",
+                                                    style: TextStyle(
+                                                        fontSize: 15,
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.w500)),
+                                              ),
+                                            ))
                         ],
                       )
                     ]),

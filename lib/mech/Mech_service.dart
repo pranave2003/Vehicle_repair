@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Mech_service_home.dart';
 
@@ -150,10 +151,30 @@ class _MechServiceState extends State<MechService> {
   Future service() async {
     await FirebaseFirestore.instance
         .collection("Service")
-        .add({"Serviceinfo": Ser.text, "Status": 0});
+        .add({"Serviceinfo": Ser.text, "mechid": ID});
 
     Navigator.of(context).pop();
 
     print("////////// service add successfully");
   }
+
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  Future<void> getData() async {
+    SharedPreferences spref = await SharedPreferences.getInstance();
+    setState(() {
+      ID = spref.getString("id");
+
+      spref.setString("id", ID ?? '');
+
+      isLoading = false;
+    });
+    print("Updated");
+  }
+
+  var ID;
+  bool isLoading = true;
 }

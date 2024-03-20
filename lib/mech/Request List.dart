@@ -42,7 +42,7 @@ class _RequestListState extends State<RequestList> {
         future: FirebaseFirestore.instance
             .collection("UserRequest")
             .where("mechid", isEqualTo: ID)
-            .where("status", isEqualTo: 0)
+            .where("status", isEqualTo: "0")
 
             // .where("Location", isEqualTo: selectedvalue)
             .get(),

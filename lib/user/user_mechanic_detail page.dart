@@ -510,8 +510,9 @@ class _UsermechanicdetailpageState extends State<Usermechanicdetailpage> {
       // Changed 'dd/mm/yy' to 'dd/MM/yyyy'
       "time": "${time.hour}:${time.minute}",
       // Changed 'time.format(context)' to '${time.hour}:${time.minute}'
-      "status": 0,
-      "usermob": number
+      "status": "0",
+      "usermob": number,
+      'payment': ''
     }).then((value) {
       Navigator.of(context).pop();
       print("Request success");

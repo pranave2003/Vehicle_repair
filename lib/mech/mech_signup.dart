@@ -489,7 +489,8 @@ class _MechsignupState extends State<Mechsignup> {
                                   "Uploading error",
                                   style: TextStyle(color: Colors.red),
                                 ));
-                              } else {
+                              } 
+                              else {
                                 mechsigh();
                               }
                             }

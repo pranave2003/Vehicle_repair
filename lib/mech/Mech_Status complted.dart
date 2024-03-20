@@ -348,7 +348,7 @@ class _MechStatusCompleatedState extends State<MechStatusCompleated> {
     FirebaseFirestore.instance
         .collection('UserRequest')
         .doc(widget.id)
-        .update({'status': 2, 'WorkCompleteAmount': amount.text});
+        .update({'payment': "3", 'WorkCompleteAmount': amount.text});
     Navigator.of(context).pop();
   }
 
@@ -356,7 +356,7 @@ class _MechStatusCompleatedState extends State<MechStatusCompleated> {
     FirebaseFirestore.instance
         .collection('UserRequest')
         .doc(widget.id)
-        .update({'status': 3, 'WorkReject': reject.text});
+        .update({'payment': "4", 'WorkReject': reject.text});
     Navigator.of(context).pop();
   }
 
@@ -402,7 +402,7 @@ class _MechStatusCompleatedState extends State<MechStatusCompleated> {
                                 radius: 30,
                                 backgroundImage: AssetImage("assets/dp.png"),
                               ),
-                              Text(complete?["username"] ?? "")
+                              Text(complete?["username"] ?? "----")
                             ],
                           ),
                         ),
@@ -410,10 +410,10 @@ class _MechStatusCompleatedState extends State<MechStatusCompleated> {
                           padding: const EdgeInsets.all(20),
                           child: Column(
                             children: [
-                              Text(complete?["Work"] ?? ""),
-                              Text(complete?["Time"] ?? ""),
-                              Text(complete?["time"] ?? ""),
-                              Text(complete?["Location"] ?? ""),
+                              Text(complete?["Work"] ?? "----"),
+                              Text(complete?["Time"] ?? "----"),
+                              Text(complete?["time"] ?? "----"),
+                              Text(complete?["Location"] ?? "---"),
                             ],
                           ),
                         )
@@ -428,7 +428,7 @@ class _MechStatusCompleatedState extends State<MechStatusCompleated> {
               child: Row(
                 children: [
                   Text(
-                    "Add Status",
+                    "Choose your option",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
                   )
                 ],

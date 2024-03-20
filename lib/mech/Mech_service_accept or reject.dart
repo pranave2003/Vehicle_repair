@@ -26,8 +26,8 @@ class _MechServiceAcceptState extends State<MechServiceAccept> {
       FirebaseFirestore.instance
           .collection('UserRequest')
           .doc(id)
-          .update({'status': 1});
-      
+          .update({'status': "1"});
+
       //
       //
     });
@@ -38,7 +38,7 @@ class _MechServiceAcceptState extends State<MechServiceAccept> {
       FirebaseFirestore.instance
           .collection('UserRequest')
           .doc(id)
-          .update({'status': 2});
+          .update({'status': "2"});
     });
   }
 
@@ -94,9 +94,10 @@ class _MechServiceAcceptState extends State<MechServiceAccept> {
             Padding(
               padding: EdgeInsets.only(top: 250.h, left: 90.w),
               child: Column(
-
                 children: [
-                  Row(children: [Text("sf")],),
+                  Row(
+                    children: [Text("sf")],
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -209,90 +210,91 @@ class _MechServiceAcceptState extends State<MechServiceAccept> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 100.h),
-                    child: reqaccreg!["status"]==0
-                  ?  Row(
-                      children: [
-                        Container(
-                          height: 40.h,
-                          width: 100.w,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Colors.green,
-                          ),
-                          child: Center(
-                              child: TextButton(
-                                  onPressed: (() {
-                                    accept(widget.id);
-                                  }),
-                                  child: Text(
-                                    "Accept",
-                                    style: TextStyle(color: Colors.white),
-                                  ))),
-                        ),
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                        Container(
-                          height: 40.h,
-                          width: 100.w,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Colors.red,
-                          ),
-                          child: Center(
-                              child: TextButton(
-                                  onPressed: (() {
-                                    rejects(widget.id);
-                                  }),
-                                  child: Text(
-                                    "Reject",
-                                    style: TextStyle(color: Colors.white),
-                                  ))),
-                        ),
-                      ],
-                    )
-                        : reqaccreg!['status'] == 1
-                      ? Row(mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                          height: 40.h,
-                          width: 100.w,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Colors.green,
-                          ),
-                          child: Center(
-                              child: TextButton(
-                                  onPressed: (() {
-
-                                  }),
-                                  child: Text(
-                                    "Accepted",
-                                    style: TextStyle(color: Colors.white),
-                                  ))),
-                    ),
-                        ],
-                      ): Row(mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: 40.h,
-                          width: 100.w,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Colors.red,
-                          ),
-                          child: Center(
-                              child: TextButton(
-                                  onPressed: (() {
-
-                                  }),
-                                  child: Text(
-                                    "Rejected",
-                                    style: TextStyle(color: Colors.white),
-                                  ))),
-                        ),
-                      ],
-                    ),
+                    child: reqaccreg!["status"] == "0"
+                        ? Row(
+                            children: [
+                              Container(
+                                height: 40.h,
+                                width: 100.w,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: Colors.green,
+                                ),
+                                child: Center(
+                                    child: TextButton(
+                                        onPressed: (() {
+                                          accept(widget.id);
+                                        }),
+                                        child: Text(
+                                          "Accept",
+                                          style: TextStyle(color: Colors.white),
+                                        ))),
+                              ),
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                              Container(
+                                height: 40.h,
+                                width: 100.w,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: Colors.red,
+                                ),
+                                child: Center(
+                                    child: TextButton(
+                                        onPressed: (() {
+                                          rejects(widget.id);
+                                        }),
+                                        child: Text(
+                                          "Reject",
+                                          style: TextStyle(color: Colors.white),
+                                        ))),
+                              ),
+                            ],
+                          )
+                        : reqaccreg!['status'] == "1"
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    height: 40.h,
+                                    width: 100.w,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: Colors.green,
+                                    ),
+                                    child: Center(
+                                        child: TextButton(
+                                            onPressed: (() {}),
+                                            child: Text(
+                                              "Accepted",
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ))),
+                                  ),
+                                ],
+                              )
+                            : Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    height: 40.h,
+                                    width: 100.w,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: Colors.red,
+                                    ),
+                                    child: Center(
+                                        child: TextButton(
+                                            onPressed: (() {}),
+                                            child: Text(
+                                              "Rejected",
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ))),
+                                  ),
+                                ],
+                              ),
                   )
                 ],
               ),
