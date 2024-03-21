@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:vehicle_project/user/user_mechanic_list.dart';
 
 class Mechanic_Faiod extends StatefulWidget {
   const Mechanic_Faiod({super.key, required this.id});
@@ -14,12 +15,25 @@ class Mechanic_Faiod extends StatefulWidget {
 
 class _Mechanic_FaiodState extends State<Mechanic_Faiod> {
   DocumentSnapshot? faild;
+  double _rating = 0;
   getData() async {
     faild = await FirebaseFirestore.instance
         .collection('UserRequest')
         .doc(widget.id)
         .get();
     print('object');
+  }
+
+  failded() async {
+    await FirebaseFirestore.instance
+        .collection('UserRequest')
+        .doc(widget.id)
+        .update({'rating': _rating});
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => UserMechanicList(),
+        ));
   }
 
   @override
@@ -100,15 +114,17 @@ class _Mechanic_FaiodState extends State<Mechanic_Faiod> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   RatingBar.builder(
-                                      initialRating: 3,
+                                      initialRating: faild!['rating'],
                                       itemCount: 5,
                                       itemSize: 25,
                                       direction: Axis.horizontal,
                                       itemBuilder: (Context, _) =>
                                           Icon(Icons.star, color: Colors.amber),
-                                      onRatingUpdate: (rating) {}),
-                                  IconButton(
-                                      onPressed: () {}, icon: Icon(Icons.edit))
+                                      onRatingUpdate: (rating) {
+                                        setState(() {
+                                          rating = faild?["rating"];
+                                        });
+                                      }),
                                 ],
                               ),
                             ],
@@ -158,7 +174,49 @@ class _Mechanic_FaiodState extends State<Mechanic_Faiod> {
                         height: 40.h,
                         child: TextButton(
                             onPressed: () {
-                              Navigator.of(context).pop();
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    backgroundColor: Color(0xffCFE2FF),
+                                    title: Text("Add Rating"),
+                                    content: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        RatingBar.builder(
+                                            initialRating: _rating,
+                                            itemCount: 5,
+                                            itemSize: 30,
+                                            direction: Axis.horizontal,
+                                            itemBuilder: (Context, _) => Icon(
+                                                Icons.star,
+                                                color: Colors.amber),
+                                            onRatingUpdate: (rating) {
+                                              setState(() {
+                                                _rating = rating;
+                                              });
+                                            }),
+                                      ],
+                                    ),
+                                    actions: [
+                                      Center(
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.green),
+                                            onPressed: () {
+                                              failded();
+                                            },
+                                            child: Text(
+                                              "Done",
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            )),
+                                      )
+                                    ],
+                                  );
+                                },
+                              );
                             },
                             child: Center(
                               child: Text(

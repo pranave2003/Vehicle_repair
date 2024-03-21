@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:vehicle_project/user/user_mechanic_list.dart';
+
+import 'User_rating.dart';
 
 class UserPaymentPage extends StatefulWidget {
   const UserPaymentPage({super.key});
@@ -13,7 +16,8 @@ class _UserPaymentPageState extends State<UserPaymentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(mainAxisAlignment: MainAxisAlignment.center,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Container(
@@ -43,7 +47,13 @@ class _UserPaymentPageState extends State<UserPaymentPage> {
                   width: 180.w,
                   height: 40.h,
                   child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => UserMechanicList(),
+                            ));
+                      },
                       child: Center(
                         child: Text(
                           "Back to home page",

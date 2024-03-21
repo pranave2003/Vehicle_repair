@@ -16,7 +16,7 @@ class UserMechBill extends StatefulWidget {
 
 class _UserMechBillState extends State<UserMechBill> {
   DocumentSnapshot? payment;
-
+  double _rating = 0;
   getData() async {
     payment = await FirebaseFirestore.instance
         .collection('UserRequest')
@@ -103,15 +103,17 @@ class _UserMechBillState extends State<UserMechBill> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   RatingBar.builder(
-                                      initialRating: 3,
+                                      initialRating: _rating,
                                       itemCount: 5,
                                       itemSize: 25,
                                       direction: Axis.horizontal,
                                       itemBuilder: (Context, _) =>
                                           Icon(Icons.star, color: Colors.amber),
-                                      onRatingUpdate: (rating) {}),
-                                  IconButton(
-                                      onPressed: () {}, icon: Icon(Icons.edit))
+                                      onRatingUpdate: (rating) {
+                                        setState(() {
+                                          _rating = rating;
+                                        });
+                                      }),
                                 ],
                               ),
                             ],
@@ -165,15 +167,49 @@ class _UserMechBillState extends State<UserMechBill> {
                         height: 40.h,
                         child: TextButton(
                             onPressed: () {
-                              FirebaseFirestore.instance
-                                  .collection('UserRequest')
-                                  .doc(widget.id)
-                                  .update({'payment': '5'});
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => UserPaymentPage(),
-                                  ));
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    backgroundColor: Color(0xffCFE2FF),
+                                    title: Text("Add Rating"),
+                                    content: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        RatingBar.builder(
+                                            initialRating: _rating,
+                                            itemCount: 5,
+                                            itemSize: 30,
+                                            direction: Axis.horizontal,
+                                            itemBuilder: (Context, _) => Icon(
+                                                Icons.star,
+                                                color: Colors.amber),
+                                            onRatingUpdate: (rating) {
+                                              setState(() {
+                                                _rating = rating;
+                                              });
+                                            }),
+                                      ],
+                                    ),
+                                    actions: [
+                                      Center(
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.green),
+                                            onPressed: () {
+                                              updatepayment();
+                                            },
+                                            child: Text(
+                                              "Pay",
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            )),
+                                      )
+                                    ],
+                                  );
+                                },
+                              );
                             },
                             child: Center(
                               child: Text(
@@ -194,5 +230,17 @@ class _UserMechBillState extends State<UserMechBill> {
         );
       },
     );
+  }
+
+  updatepayment() async {
+    await FirebaseFirestore.instance
+        .collection('UserRequest')
+        .doc(widget.id)
+        .update({'payment': '5', 'rating': _rating});
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => UserPaymentPage(),
+        ));
   }
 }

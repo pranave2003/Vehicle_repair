@@ -366,14 +366,14 @@ class _UsermechanicdetailpageState extends State<Usermechanicdetailpage> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(mechs!['username'],
+                          child: Text(mechs?['username'] ?? '',
                               style: TextStyle(
                                   fontWeight: FontWeight.w600, fontSize: 18)),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            mechs!['Phonenumber'],
+                            mechs?['Phonenumber'] ?? '',
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                             ),
@@ -382,7 +382,7 @@ class _UsermechanicdetailpageState extends State<Usermechanicdetailpage> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            mechs!['experience'],
+                            mechs?['experience'] ?? '',
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                             ),

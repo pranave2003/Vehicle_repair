@@ -420,38 +420,39 @@ class _MechsignupState extends State<Mechsignup> {
 
               Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child:
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            imageURL == null
-                           ? IconButton(
-                                onPressed: () {
-                                  pickimage();
-                                },
-                                icon: Icon(Icons.image,color: Colors.blue,))
-                                : imageURL != null
-                                ? Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Column(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      imageURL == null
+                          ? IconButton(
+                              onPressed: () {
+                                pickimage();
+                              },
+                              icon: Icon(
+                                Icons.image,
+                                color: Colors.blue,
+                              ))
+                          : imageURL != null
+                              ? Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Icon(Icons.photo,color: Colors.green,),
-                                    Text(
-                                        "Image Uploaded",
-                                        style: TextStyle(color: Colors.green),
-                                      ),
+                                    Column(
+                                      children: [
+                                        Icon(
+                                          Icons.photo,
+                                          color: Colors.green,
+                                        ),
+                                        Text(
+                                          "Image Uploaded",
+                                          style: TextStyle(color: Colors.green),
+                                        ),
+                                      ],
+                                    )
                                   ],
                                 )
-
-                              ],
-                            )
-                                : Text("444 line")
-                          ],
-                        )
-
-
-              ),
+                              : Text("444 line")
+                    ],
+                  )),
 
               // login
               Padding(
@@ -489,8 +490,7 @@ class _MechsignupState extends State<Mechsignup> {
                                   "Uploading error",
                                   style: TextStyle(color: Colors.red),
                                 ));
-                              } 
-                              else {
+                              } else {
                                 mechsigh();
                               }
                             }

@@ -122,19 +122,11 @@ class _MechanicState extends State<Mechanic> {
                                   Text(mech[index]['Location']),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: Container(
-                                      height: 40.h,
-                                      width: 130.w,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: Colors.red,
-                                      ),
-                                      child: Center(
-                                        child: Text("payment Pending",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w500)),
-                                      ),
+                                    child: Center(
+                                      child: Text("Available",
+                                          style: TextStyle(
+                                              color: Colors.green,
+                                              fontWeight: FontWeight.w500)),
                                     ),
                                   )
                                 ],

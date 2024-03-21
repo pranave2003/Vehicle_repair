@@ -309,38 +309,39 @@ class _UserSighnupState extends State<UserSighnup> {
               ),
               Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child:
-                  Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       imageURL == null
                           ? IconButton(
-                          onPressed: () {
-                            pickimage();
-                          },
-                          icon: Icon(Icons.image,color: Colors.blue,))
+                              onPressed: () {
+                                pickimage();
+                              },
+                              icon: Icon(
+                                Icons.image,
+                                color: Colors.blue,
+                              ))
                           : imageURL != null
-                          ? Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Column(
-                            children: [
-                              Icon(Icons.photo,color: Colors.green,),
-                              Text(
-                                "Image Uploaded",
-                                style: TextStyle(color: Colors.green),
-                              ),
-                            ],
-                          )
-
-                        ],
-                      )
-                          : Text("444 line")
+                              ? Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Column(
+                                      children: [
+                                        Icon(
+                                          Icons.photo,
+                                          color: Colors.green,
+                                        ),
+                                        Text(
+                                          "Image Uploaded",
+                                          style: TextStyle(color: Colors.green),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                )
+                              : Text("444 line")
                     ],
-                  )
-
-
-              ),
+                  )),
               //
 
               // login
@@ -353,32 +354,32 @@ class _UserSighnupState extends State<UserSighnup> {
                       width: 190.w,
                       height: 50.h,
                       child: TextButton(
-                          onPressed: (){
+                          onPressed: () {
                             if (formkey.currentState!.validate()) {
                               if (selectedvalue == null) {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(const SnackBar(
-                                    content: Text(
-                                      "Please choose your district",
-                                      style: TextStyle(color: Colors.red),
-                                    )));
+                                        content: Text(
+                                  "Please choose your district",
+                                  style: TextStyle(color: Colors.red),
+                                )));
                               }
 
                               if (_image == null) {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(const SnackBar(
-                                    content: Text(
-                                      "Please upload image ",
-                                      style: TextStyle(color: Colors.red),
-                                    )));
+                                        content: Text(
+                                  "Please upload image ",
+                                  style: TextStyle(color: Colors.red),
+                                )));
 
                                 print("please pick image &");
 
                                 Center(
                                     child: Text(
-                                      "Uploading error",
-                                      style: TextStyle(color: Colors.red),
-                                    ));
+                                  "Uploading error",
+                                  style: TextStyle(color: Colors.red),
+                                ));
                               } else {
                                 sigh();
                               }
