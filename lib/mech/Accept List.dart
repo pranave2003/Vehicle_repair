@@ -16,7 +16,9 @@ class AcceptList extends StatefulWidget {
 class _AcceptListState extends State<AcceptList> {
   var ID;
   var pth;
+  @override
   void initState() {
+    super.initState();
     getData();
   }
 
@@ -63,11 +65,23 @@ class _AcceptListState extends State<AcceptList> {
             itemBuilder: (context, index) {
               return InkWell(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) {
-                      return MechStatusCompleated(id: AcceptList[index].id);
-                    },
-                  ));
+                  if (AcceptList[index]['payment'] == '5') {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        duration: Duration(seconds: 1),
+                        backgroundColor: Colors.green,
+                        behavior: SnackBarBehavior.floating,
+                        content: Text(
+                          "payment successfully received",
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.w500),
+                        )));
+                  } else {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        return MechStatusCompleated(id: AcceptList[index].id);
+                      },
+                    ));
+                  }
                 },
                 child: Padding(
                   padding: EdgeInsets.all(10.sp),
@@ -141,20 +155,15 @@ class _AcceptListState extends State<AcceptList> {
                                                         FontWeight.w500)),
                                           ),
                                         )
-                                      : AcceptList[index]['payment'] == null
-                                          ? Container(
-                                              height: 30.h,
-                                              width: 100.w,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                color: Colors.yellow,
-                                              ),
-                                              child: Center(
-                                                child: Text("approved",
+                                      : AcceptList[index]['payment'] == '5'
+                                          ? Center(
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Text("recived",
                                                     style: TextStyle(
-                                                        fontSize: 10,
-                                                        color: Colors.white,
+                                                        fontSize: 20,
+                                                        color: Colors.green,
                                                         fontWeight:
                                                             FontWeight.w500)),
                                               ),

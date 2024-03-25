@@ -61,10 +61,19 @@ class _UserNotificationState extends State<UserNotification> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: SizedBox(
                                     width: 200,
-                                    child: Text(
-                                      UserNoti[index]['content'],
-                                      style: TextStyle(
-                                          color: Colors.black87, fontSize: 15),
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          UserNoti[index]['content'],
+                                          style: TextStyle(
+                                              color: Colors.black87, fontSize: 15),
+                                        ),
+                                        Text(
+                                          UserNoti[index]['content'],
+                                          style: TextStyle(
+                                              color: Colors.black87, fontSize: 15),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),

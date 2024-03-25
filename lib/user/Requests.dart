@@ -52,7 +52,8 @@ class _RequestsState extends State<Requests> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Mechanic_Faiod(id:reqastss[index].id),
+                            builder: (context) =>
+                                Mechanic_Faiod(id: reqastss[index].id),
                           ));
                       print('work faild');
                     } else if (reqastss[index]['status'] == '2') {
@@ -67,7 +68,7 @@ class _RequestsState extends State<Requests> {
                     }
                   },
                   child: Container(
-                    height: 130.h,
+                    height: 150.h,
                     width: 100.w,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
@@ -84,6 +85,7 @@ class _RequestsState extends State<Requests> {
                                 Text(reqastss[index]['Time']),
                                 Text(reqastss[index]['time']),
                                 Text(reqastss[index]['Work']),
+                                Text(reqastss[index]['Location'])
                               ],
                             ),
                           ),

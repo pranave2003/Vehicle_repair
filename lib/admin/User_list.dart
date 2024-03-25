@@ -48,7 +48,9 @@ class _UserListState extends State<UserList> {
                   },
                   child: ListTile(
                     tileColor: Colors.white,
-                    leading: CircleAvatar(backgroundImage: AssetImage("assets/dp.png"),),
+                    leading: CircleAvatar(
+                      backgroundImage: AssetImage("assets/dp.png"),
+                    ),
                     // Column(
                     //   children: [
                     //     Image.asset('assets/dp.png'),

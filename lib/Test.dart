@@ -1,77 +1,81 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class RatingPage extends StatefulWidget {
+class MyWidget extends StatefulWidget {
   @override
-  _RatingPageState createState() => _RatingPageState();
+  _MyWidgetState createState() => _MyWidgetState();
 }
 
-class _RatingPageState extends State<RatingPage> {
-  double _rating = 0;
+class _MyWidgetState extends State<MyWidget> {
+  late List<String> _dropdownItems = ['Loading...']; // Initial dropdown items
+  late String _selectedItem;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchDataFromFirestore();
+  }
+
+  // Future<void> _fetchDataFromFirestore() async {
+  //   try {
+  //     QuerySnapshot querySnapshot =
+  //         await FirebaseFirestore.instance.collection('your_collection').get();
+  //     List<String> items = querySnapshot.docs
+  //         .map((doc) => doc.data()['your_field'] as String)
+  //         .toList();
+  //     setState(() {
+  //       _dropdownItems = items;
+  //       _selectedItem = _dropdownItems.first; // Set default selected item
+  //     });
+  //   } catch (e) {
+  //     print("Error fetching data: $e");
+  //   }
+  // }
+  Future<void> _fetchDataFromFirestore() async {
+    try {
+      QuerySnapshot querySnapshot =
+          await FirebaseFirestore.instance.collection('Service').get();
+      List<String> items = querySnapshot.docs
+          .map((doc) =>
+              (doc.data() as Map<String, dynamic>)['Serviceinfo'] as String)
+          .toList();
+      setState(() {
+        _dropdownItems = items;
+        _selectedItem = _dropdownItems.first; // Set default selected item
+      });
+    } catch (e) {
+      print("Error fetching data: $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Rate this App'),
+        title: Text('Dropdown from Firestore Collection'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            RatingBar.builder(
-              initialRating: _rating,
-              minRating: 1,
-              direction: Axis.horizontal,
-              allowHalfRating: true,
-              itemCount: 5,
-              itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-              itemBuilder: (context, _) => Icon(
-                Icons.star,
-                color: Colors.amber,
-              ),
-              onRatingUpdate: (rating) {
+            DropdownButton<String>(
+              value: _selectedItem,
+              onChanged: (newValue) {
                 setState(() {
-                  _rating = rating;
+                  _selectedItem = newValue!;
                 });
               },
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                _submitRating();
-              },
-              child: Text('Submit Rating'),
+              items:
+                  _dropdownItems.map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
             ),
           ],
         ),
       ),
     );
-  }
-
-  void _submitRating() async {
-    try {
-      FirebaseFirestore firestore = FirebaseFirestore.instance;
-      CollectionReference ratings = firestore.collection('ratings');
-
-      await ratings.add({
-        'rating': _rating,
-        'timestamp': FieldValue.serverTimestamp(),
-      });
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Rating submitted successfully!'),
-        ),
-      );
-    } catch (e) {
-      print('Error submitting rating: $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Failed to submit rating. Please try again.'),
-        ),
-      );
-    }
   }
 }

@@ -148,14 +148,18 @@ class _MechServiceState extends State<MechService> {
     );
   }
 
-  Future service() async {
-    await FirebaseFirestore.instance
-        .collection("Service")
-        .add({"Serviceinfo": Ser.text, "mechid": ID});
+  Future <dynamic>service() async {
+   setState(() {
+      FirebaseFirestore.instance
+         .collection("Service")
+         .add({"Serviceinfo": Ser.text, "mechid": ID});
 
-    Navigator.of(context).pop();
+     Navigator.of(context).pop();
 
-    print("////////// service add successfully");
+     print("////////// service add successfully");
+   });
+   Ser.clear();
+
   }
 
   void initState() {

@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,6 +15,7 @@ class _MechRatingState extends State<MechRating> {
   bool isloading = true;
   var ID;
   var pth;
+  @override
   void initState() {
     super.initState();
     getData();
@@ -39,8 +39,8 @@ class _MechRatingState extends State<MechRating> {
     return Scaffold(
       appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: Color(0xffCFE2FF),
-          title: Row(
+          backgroundColor: const Color(0xffCFE2FF),
+          title: const Row(
             children: [
               Text("Rating"),
             ],
@@ -55,7 +55,7 @@ class _MechRatingState extends State<MechRating> {
             .get(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
@@ -75,7 +75,7 @@ class _MechRatingState extends State<MechRating> {
                   width: 330.w,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: Color(0xffCFE2FF)),
+                      color: const Color(0xffCFE2FF)),
                   child: Column(children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,7 +84,7 @@ class _MechRatingState extends State<MechRating> {
                           padding: const EdgeInsets.all(20),
                           child: Column(
                             children: [
-                              CircleAvatar(
+                              const CircleAvatar(
                                 radius: 30,
                                 backgroundImage: AssetImage("assets/dp.png"),
                               ),
@@ -107,7 +107,7 @@ class _MechRatingState extends State<MechRating> {
                           padding: const EdgeInsets.all(20),
                           child: Column(
                             children: [
-                              Text("Rating"),
+                              const Text("Rating"),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -122,7 +122,20 @@ class _MechRatingState extends State<MechRating> {
                                       onRatingUpdate: (rating) {}),
                                 ],
                               ),
-                              Text("4/5")
+                              Text("${requestlist[index]['rating']}/5"),
+                              requestlist[index]['payment'] == '5'
+                                  ? const Text(
+                                      "Completed",
+                                      style: TextStyle(
+                                          color: Colors.green,
+                                          fontWeight: FontWeight.w500),
+                                    )
+                                  : const Text(
+                                      "failed",
+                                      style: TextStyle(
+                                          color: Colors.red,
+                                          fontWeight: FontWeight.w500),
+                                    )
                             ],
                           ),
                         )

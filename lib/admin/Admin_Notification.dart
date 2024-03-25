@@ -26,21 +26,22 @@ class _AdminNotificationState extends State<AdminNotification> {
         future: FirebaseFirestore.instance.collection("Notification").get(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return LinearProgressIndicator(color: Colors.red,);
+            return LinearProgressIndicator(
+              color: Colors.red,
+            );
           }
           if (snapshot.hasError) {
             return Center(
               child: Text("Error:${snapshot.error}"),
             );
           }
-          final Notifi=snapshot.data?.docs??[];
-          return  ListView.builder(
+          final Notifi = snapshot.data?.docs ?? [];
+          return ListView.builder(
             itemCount: Notifi.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: EdgeInsets.all(10.sp),
                 child: Container(
-
                   color: Colors.white,
                   child: Column(children: [
                     Row(
@@ -60,8 +61,7 @@ class _AdminNotificationState extends State<AdminNotification> {
                           padding: const EdgeInsets.all(8.0),
                           child: SizedBox(
                               width: 350.w,
-                              child: Text(
-                                  Notifi[index]['content'])),
+                              child: Text(Notifi[index]['content'])),
                         )
                       ],
                     )
@@ -71,7 +71,6 @@ class _AdminNotificationState extends State<AdminNotification> {
             },
           );
         },
-
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,

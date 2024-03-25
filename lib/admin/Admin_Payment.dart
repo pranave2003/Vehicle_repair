@@ -23,7 +23,7 @@ class _AdminPaymentState extends State<AdminPayment> {
       body: FutureBuilder(
         future: FirebaseFirestore.instance
             .collection("UserRequest")
-            .where("status", isEqualTo: 2)
+            .where("payment", isEqualTo: '4')
             .get(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -58,8 +58,8 @@ class _AdminPaymentState extends State<AdminPayment> {
                                 payment[index]['username'],
                                 style: TextStyle(fontWeight: FontWeight.w700),
                               ),
-                              Text(payment[index]['WorkCompleteAmount'],
-
+                              Text(
+                                payment[index]['WorkCompleteAmount'],
                                 style: TextStyle(fontWeight: FontWeight.w500),
                               ),
                               Text(payment[index]["Work"]),
