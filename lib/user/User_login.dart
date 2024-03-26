@@ -16,6 +16,19 @@ class Userlogin extends StatefulWidget {
 }
 
 class _UserloginState extends State<Userlogin> {
+  bool isloading = false;
+  void _handleButtonPress() {
+    setState(() {
+      isloading = true;
+    });
+
+    // Future.delayed(Duration(seconds: 2), () {
+    //   setState(() {
+    //     isloading = false;
+    //   });
+    // });
+  }
+
   var username = TextEditingController();
   var password = TextEditingController();
   final formkey = GlobalKey<FormState>();
@@ -67,83 +80,46 @@ class _UserloginState extends State<Userlogin> {
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 50.w),
-                  child: Row(
-                    children: [
-                      Text(
-                        "Enter username",
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w600),
-                      )
-                    ],
-                  ),
+                  padding: const EdgeInsets.only(left: 40, right: 40, top: 50),
+                  child: TextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'empty Email id';
+                        }
+                      },
+                      controller: username,
+                      cursorColor: Colors.blue,
+                      style: TextStyle(),
+                      decoration: InputDecoration(
+                          fillColor: Colors.white,
+                          filled: true,
+                          hintText: "Username",
+                          enabledBorder: OutlineInputBorder(),
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))))),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 290.w,
-                        height: 50.h,
-                        child: TextFormField(
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'empty file';
-                              }
-                            },
-                            controller: username,
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "  Username",
-                                hintStyle: TextStyle(color: Colors.grey))),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.sp),
-                            color: Colors.white),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 50.w, top: 30.h),
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          "Enter Password",
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.w600),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 290.w,
-                        height: 50.h,
-                        child: TextFormField(
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'empty file';
-                              }
-                            },
-                            controller: password,
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "  Enter Password",
-                                hintStyle: TextStyle(color: Colors.grey))),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.sp),
-                            color: Colors.white),
-                      )
-                    ],
-                  ),
+                  padding: const EdgeInsets.only(left: 40, right: 40, top: 70),
+                  child: TextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'empty password';
+                        }
+                      },
+                      controller: password,
+                      cursorColor: Colors.blue,
+                      style: TextStyle(),
+                      decoration: InputDecoration(
+                          fillColor: Colors.white,
+                          filled: true,
+                          hintText: "Enter Password",
+                          enabledBorder: OutlineInputBorder(),
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))))),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -163,29 +139,39 @@ class _UserloginState extends State<Userlogin> {
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 90.h),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 190.w,
-                        height: 50.h,
-                        child: TextButton(
-                            onPressed: () {
-                              if (formkey.currentState!.validate()) {
-                                userLogin();
-                              }
-                            },
-                            child: Text(
-                              "LOGIN",
-                              style: TextStyle(color: Colors.white),
-                            )),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.sp),
-                            color: Color(0xff2357D9)),
-                      )
-                    ],
-                  ),
+                  padding: EdgeInsets.only(top: 60.h),
+                  child: isloading
+                      ? const CircularProgressIndicator(
+                          color: Colors.blue,
+                        )
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: 190.w,
+                              height: 50.h,
+                              child: TextButton(
+                                  onPressed: () {
+                                    if (formkey.currentState!.validate()) {
+                                      _handleButtonPress();
+                                      userLogin();
+                                    }
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "LOGIN",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ],
+                                  )),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.sp),
+                                  color: Color(0xff2357D9)),
+                            )
+                          ],
+                        ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -195,11 +181,13 @@ class _UserloginState extends State<Userlogin> {
                       Text("Do you have account ?"),
                       TextButton(
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(
-                              builder: (context) {
-                                return UserSighnup();
-                              },
-                            ));
+                            setState(() {
+                              Navigator.push(context, MaterialPageRoute(
+                                builder: (context) {
+                                  return UserSighnup();
+                                },
+                              ));
+                            });
                           },
                           child: Text(
                             "Sign up",
@@ -221,6 +209,7 @@ class _UserloginState extends State<Userlogin> {
         .where('password', isEqualTo: password.text)
         .where('status', isEqualTo: 1)
         .get();
+
     if (user.docs.isNotEmpty) {
       id = user.docs[0].id;
       name = user.docs[0]['username'];
@@ -228,11 +217,15 @@ class _UserloginState extends State<Userlogin> {
       phone = user.docs[0]['phone'];
       path = user.docs[0]['profilepath'];
       SharedPreferences data = await SharedPreferences.getInstance();
+
       data.setString('id', id);
       data.setString('name', name);
       data.setString('email', email);
       data.setString('phone', phone);
       data.setString('paath', path);
+      setState(() {
+        isloading = false;
+      });
 
       Navigator.push(context, MaterialPageRoute(
         builder: (context) {
@@ -240,11 +233,16 @@ class _UserloginState extends State<Userlogin> {
         },
       ));
     } else {
+      setState(() {
+        isloading = false;
+      });
+
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          elevation: BorderSide.strokeAlignOutside,
           content: Text(
-        "username and password error",
-        style: TextStyle(color: Colors.red),
-      )));
+            "username and password error",
+            style: TextStyle(color: Colors.red),
+          )));
     }
   }
 }

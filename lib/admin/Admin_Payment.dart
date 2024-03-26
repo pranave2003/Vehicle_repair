@@ -23,7 +23,7 @@ class _AdminPaymentState extends State<AdminPayment> {
       body: FutureBuilder(
         future: FirebaseFirestore.instance
             .collection("UserRequest")
-            .where("payment", isEqualTo: '4')
+            .where("payment", isEqualTo: '5')
             .get(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -37,47 +37,51 @@ class _AdminPaymentState extends State<AdminPayment> {
             );
           }
           final payment = snapshot.data?.docs ?? [];
-          return ListView.builder(
-            itemCount: payment.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: EdgeInsets.all(10.sp),
-                child: Container(
-                  height: 100.h,
-                  width: 100.w,
-                  color: Colors.white,
-                  child: Column(children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
+          return payment == null
+              ? Text('data')
+              : ListView.builder(
+                  itemCount: payment.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: EdgeInsets.all(10.sp),
+                      child: Container(
+                        height: 100.h,
+                        width: 100.w,
+                        color: Colors.white,
+                        child: Column(children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                payment[index]['username'],
-                                style: TextStyle(fontWeight: FontWeight.w700),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      payment[index]['username'],
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                    Text(
+                                      payment[index]['WorkCompleteAmount'],
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    Text(payment[index]["Work"]),
+                                    Text(payment[index]["mechname"]),
+                                  ],
+                                ),
                               ),
-                              Text(
-                                payment[index]['WorkCompleteAmount'],
-                                style: TextStyle(fontWeight: FontWeight.w500),
-                              ),
-                              Text(payment[index]["Work"]),
-                              Text(payment[index]["mechname"]),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(payment[index]['Time']),
+                              )
                             ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(payment[index]['Time']),
-                        )
-                      ],
-                    )
-                  ]),
-                ),
-              );
-            },
-          );
+                          )
+                        ]),
+                      ),
+                    );
+                  },
+                );
         },
       ),
     );

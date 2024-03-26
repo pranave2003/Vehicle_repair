@@ -271,7 +271,7 @@ class _AdminUserState extends State<AdminUser> {
                                           BorderRadius.circular(5.sp)),
                                   child: TextButton(
                                       onPressed: () {},
-                                      child: Text(
+                                      child: const Text(
                                         "Accepted",
                                         style: TextStyle(color: Colors.white),
                                       )),
@@ -285,7 +285,7 @@ class _AdminUserState extends State<AdminUser> {
                                           BorderRadius.circular(5.sp)),
                                   child: TextButton(
                                       onPressed: () {},
-                                      child: Text(
+                                      child: const Text(
                                         "Rejected",
                                         style: TextStyle(color: Colors.white),
                                       )),

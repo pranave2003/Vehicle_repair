@@ -203,32 +203,6 @@ class _UsermechanicdetailpageState extends State<Usermechanicdetailpage> {
                         ],
                       ),
 
-                      // Container(
-                      //   width: 290.w,
-                      //   decoration: BoxDecoration(
-                      //     borderRadius: BorderRadius.circular(6).r,
-                      //     color: Color(0xffCFE2FF),
-                      //   ),
-                      //   child: DropdownButton<String>(
-                      //       isExpanded: true,
-                      //       elevation: 0,
-                      //       dropdownColor: Colors.white,
-                      //       hint: const Text("Choose needed service"),
-                      //       underline: const SizedBox(),
-                      //       value: selectedvalue,
-                      //       items: Worklist.map((String value) {
-                      //         return DropdownMenuItem<String>(
-                      //             value: value, child: Text(value));
-                      //       }).toList(),
-                      //       onChanged: (newvalue) {
-                      //         setState(() {
-                      //           selectedvalue = newvalue;
-                      //           print(selectedvalue);
-                      //         });
-                      //       },
-                      //       padding: const EdgeInsets.symmetric(horizontal: 10)),
-                      // ),
-
                       //
                       Padding(
                         padding: const EdgeInsets.all(20),

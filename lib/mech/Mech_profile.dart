@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MechProfile extends StatefulWidget {
   const MechProfile({super.key});
@@ -10,10 +12,45 @@ class MechProfile extends StatefulWidget {
 }
 
 class _MechProfileState extends State<MechProfile> {
+  var name = TextEditingController();
+  var phone = TextEditingController();
+  var email = TextEditingController();
+  var experience = TextEditingController();
+  var shopename = TextEditingController();
+  var workshope = TextEditingController();
+  var location = TextEditingController();
+
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  Future<void> getData() async {
+    SharedPreferences spref = await SharedPreferences.getInstance();
+    setState(() {
+      ID = spref.getString("id");
+
+      print(ID.toString());
+    });
+    print("Updated");
+  }
+
+  GEtDtata() async {
+    await FirebaseFirestore.instance.collection('mechsighn').doc(ID).update({
+      "username": name.text,
+      "Phonenumber": phone.text,
+      "email": email.text,
+      "experience": experience.text,
+      "shopename": shopename.text,
+      "Location": location.text
+    });
+    print('update  data');
+  }
+
+  var ID;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(children: [
@@ -26,9 +63,12 @@ class _MechProfileState extends State<MechProfile> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
-                      children: [IconButton(onPressed: () {
-                        Navigator.of(context).pop();
-                      }, icon: Icon(Icons.arrow_back_ios))
+                      children: [
+                        IconButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            icon: Icon(Icons.arrow_back_ios))
                       ],
                     ),
                   ),
@@ -42,7 +82,8 @@ class _MechProfileState extends State<MechProfile> {
                             width: 120.w,
                             decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image: AssetImage("assets/officedp.jpg"), fit: BoxFit.fill),
+                                    image: AssetImage("assets/officedp.jpg"),
+                                    fit: BoxFit.fill),
                                 borderRadius: BorderRadius.circular(130),
                                 color: Colors.grey),
                           ),
@@ -50,45 +91,13 @@ class _MechProfileState extends State<MechProfile> {
                       )
                     ],
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 30.w, top: 20.h),
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "Name",
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.w600),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 290.w,
-                        height: 50.h,
-                        child: TextFormField(
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "  name",
-                                hintStyle: TextStyle(color: Colors.grey))),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.sp),
-                            color: Color(0xffE8F1FF)),
-                      )
-                    ],
-                  ),
                   //
                   Padding(
                     padding: EdgeInsets.only(left: 30.w, top: 2.h),
-                    child: Row(
+                    child: const Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Text(
                             "Username",
                             style: TextStyle(
@@ -105,6 +114,7 @@ class _MechProfileState extends State<MechProfile> {
                         width: 290.w,
                         height: 50.h,
                         child: TextFormField(
+                            controller: name,
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "  Username",
@@ -139,6 +149,7 @@ class _MechProfileState extends State<MechProfile> {
                         width: 290.w,
                         height: 50.h,
                         child: TextFormField(
+                            controller: phone,
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "  phone number",
@@ -175,6 +186,7 @@ class _MechProfileState extends State<MechProfile> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextFormField(
+                              controller: email,
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   hintText: "Example@gmail.com",
@@ -189,10 +201,10 @@ class _MechProfileState extends State<MechProfile> {
                   //
                   Padding(
                     padding: EdgeInsets.only(left: 30.w, top: 2.h),
-                    child: Row(
+                    child: const Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Text(
                             "Work experience",
                             style: TextStyle(
@@ -209,6 +221,7 @@ class _MechProfileState extends State<MechProfile> {
                         width: 290.w,
                         height: 50.h,
                         child: TextFormField(
+                            controller: experience,
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "  experience",
@@ -222,10 +235,10 @@ class _MechProfileState extends State<MechProfile> {
                   //
                   Padding(
                     padding: EdgeInsets.only(left: 30.w, top: 2.h),
-                    child: Row(
+                    child: const Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Text(
                             "Work shop name",
                             style: TextStyle(
@@ -242,6 +255,7 @@ class _MechProfileState extends State<MechProfile> {
                         width: 290.w,
                         height: 50.h,
                         child: TextFormField(
+                            controller: shopename,
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "  shop name",
@@ -275,6 +289,7 @@ class _MechProfileState extends State<MechProfile> {
                         width: 290.w,
                         height: 50.h,
                         child: TextFormField(
+                            controller: location,
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "  Enter your location",
@@ -289,8 +304,9 @@ class _MechProfileState extends State<MechProfile> {
 
                   //button
                   Padding(
-                    padding:  EdgeInsets.only(top: 20.h,bottom: 100.h),
-                    child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    padding: EdgeInsets.only(top: 20.h, bottom: 100.h),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
                           width: 150.w,
@@ -299,7 +315,9 @@ class _MechProfileState extends State<MechProfile> {
                               color: Color(0xff2357D9),
                               borderRadius: BorderRadius.circular(5.sp)),
                           child: TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                GEtDtata();
+                              },
                               child: Text(
                                 "Submit",
                                 style: TextStyle(color: Colors.white),

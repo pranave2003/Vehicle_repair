@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: Userlogin()),
+          home: Adminlogin()),
       designSize: Size(390, 844),
     );
   }

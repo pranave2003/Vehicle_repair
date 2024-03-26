@@ -72,7 +72,7 @@ class _UserListState extends State<UserList> {
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(5),
-                                          color: Colors.grey),
+                                          color: Colors.amber),
                                       child: Center(
                                           child: Text("pending",
                                               style: TextStyle(
