@@ -196,7 +196,7 @@ class _UserMechBillState extends State<UserMechBill> {
                                       Center(
                                         child: ElevatedButton(
                                             style: ElevatedButton.styleFrom(
-                                                primary: Colors.green),
+                                                backgroundColor: Colors.green),
                                             onPressed: () {
                                               updatepayment();
                                             },

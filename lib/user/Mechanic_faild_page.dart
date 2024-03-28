@@ -203,7 +203,7 @@ class _Mechanic_FaiodState extends State<Mechanic_Faiod> {
                                       Center(
                                         child: ElevatedButton(
                                             style: ElevatedButton.styleFrom(
-                                                primary: Colors.green),
+                                                backgroundColor: Colors.green),
                                             onPressed: () {
                                               failded();
                                             },

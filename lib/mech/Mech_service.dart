@@ -113,7 +113,8 @@ class _MechServiceState extends State<MechService> {
                 actions: [
                   Center(
                     child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(primary: Colors.blue),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue),
                         onPressed: () {
                           service();
                         },
@@ -148,18 +149,17 @@ class _MechServiceState extends State<MechService> {
     );
   }
 
-  Future <dynamic>service() async {
-   setState(() {
+  Future<dynamic> service() async {
+    setState(() {
       FirebaseFirestore.instance
-         .collection("Service")
-         .add({"Serviceinfo": Ser.text, "mechid": ID});
+          .collection("Service")
+          .add({"Serviceinfo": Ser.text, "mechid": ID});
 
-     Navigator.of(context).pop();
+      Navigator.of(context).pop();
 
-     print("////////// service add successfully");
-   });
-   Ser.clear();
-
+      print("////////// service add successfully");
+    });
+    Ser.clear();
   }
 
   void initState() {
