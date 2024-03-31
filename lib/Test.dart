@@ -22,7 +22,7 @@ class DateTimeDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var now = DateTime.now();
-    var formatter = DateFormat('yyyy-MM-dd HH:mm:ss');
+    var formatter = DateFormat('dd-MM-yyyy HH:mm:ss');
     String formattedDate = formatter.format(now);
 
     return Text(

@@ -20,7 +20,7 @@ class _MechServiceState extends State<MechService> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder(
-        future: FirebaseFirestore.instance.collection("Service").get(),
+        future: FirebaseFirestore.instance.collection("Service").where("mechid",isEqualTo: ID).get(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return LinearProgressIndicator(

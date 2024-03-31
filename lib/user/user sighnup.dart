@@ -22,6 +22,7 @@ class _UserSighnupState extends State<UserSighnup> {
     'Ernakulam',
     'Idukki',
     'Kannur',
+    "palakkad",
     'Kasaragod',
     'Kollam',
     'Kottayam',
@@ -248,7 +249,7 @@ class _UserSighnupState extends State<UserSighnup> {
                     child: DropdownButton<String>(
                         isExpanded: true,
                         elevation: 0,
-                        dropdownColor: Colors.orange,
+                        dropdownColor: Colors.blue. shade100,
                         hint: const Text("Location"),
                         underline: const SizedBox(),
                         value: selectedvalue,

@@ -42,28 +42,58 @@ class _AdminNotificationState extends State<AdminNotification> {
               return Padding(
                 padding: EdgeInsets.all(10.sp),
                 child: Container(
-                  color: Colors.white,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.blue.shade100,
+                  ),
                   child: Column(children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(Notifi[index]['matter'],
-                              style: TextStyle(fontWeight: FontWeight.w600)),
-                        )
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(Notifi[index]['matter'],
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600, fontSize: 20)),
+                          ),
+                          IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  FirebaseFirestore.instance
+                                      .collection('Notification')
+                                      .doc(Notifi[index].id)
+                                      .delete();
+                                });
+                              },
+                              icon: Icon(Icons.delete))
+                        ],
+                      ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: SizedBox(
-                              width: 350.w,
-                              child: Text(Notifi[index]['content'])),
-                        )
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: SizedBox(
+                                width: 280.w,
+                                child: Text(Notifi[index]['content'])),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(Notifi[index]['date']),
+                          Text(Notifi[index]['Time'])
+                        ],
+                      ),
                     )
                   ]),
                 ),
