@@ -108,7 +108,7 @@ class _UserSighnupState extends State<UserSighnup> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 50.w, bottom: 10.h),
-                child: Row(
+                child: const Row(
                   children: [
                     Text(
                       "Enter username",
@@ -249,7 +249,7 @@ class _UserSighnupState extends State<UserSighnup> {
                     child: DropdownButton<String>(
                         isExpanded: true,
                         elevation: 0,
-                        dropdownColor: Colors.blue. shade100,
+                        dropdownColor: Colors.blue.shade100,
                         hint: const Text("Location"),
                         underline: const SizedBox(),
                         value: selectedvalue,

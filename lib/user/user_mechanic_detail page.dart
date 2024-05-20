@@ -32,11 +32,7 @@ class _UsermechanicdetailpageState extends State<Usermechanicdetailpage> {
     getData();
   }
 
-  List<String> Worklist = [
-    'oil chang',
-    'engine service',
-    'brake down',
-  ];
+
   String? selectedvalue;
   var place = TextEditingController();
   @override

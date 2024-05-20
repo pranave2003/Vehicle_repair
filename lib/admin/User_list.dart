@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 
 import 'Admin_User.dart';
 
@@ -21,8 +22,11 @@ class _UserListState extends State<UserList> {
         future: FirebaseFirestore.instance.collection("User").get(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(),
+            return  Center(
+              child: Container(height: 100,width: 100,
+                child: Lottie.asset('assets/Animation - 1715334676747.json',
+                    height: 100, width: 100, fit: BoxFit.fill),
+              ),
             );
           }
           if (snapshot.hasError) {

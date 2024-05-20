@@ -18,9 +18,7 @@ class _AdminAddNotificationState extends State<AdminAddNotification> {
   var Matter = TextEditingController();
   var Content = TextEditingController();
 
-  // var now = DateTime.now();
-  // var formatter = DateFormat('dd-MM-yyyy HH:mm:ss');
-  // String formattedDate = formatter.format(now);
+
 
   final date = new DateTime.now();
   TimeOfDay time = TimeOfDay.now();

@@ -21,7 +21,8 @@ class _HOMEState extends State<HOME> {
         children: [
           SafeArea(
               child: CircleAvatar(
-                  backgroundImage: AssetImage("assets/officedp.jpg"))),
+                  backgroundImage: AssetImage("assets/officedp.jpg"))
+          ),
 
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10,top: 20).r,
