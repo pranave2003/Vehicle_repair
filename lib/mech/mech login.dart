@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vehicle_project/mech/forgottpass.dart';
 import 'package:vehicle_project/mech/mech_signup.dart';
 
 import 'Mech_service_home.dart';
@@ -32,6 +33,15 @@ class _MechloginState extends State<Mechlogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color(0xffCFE2FF),
+          automaticallyImplyLeading: false,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: Icon(Icons.arrow_back_ios)),
+        ),
         backgroundColor: Color(0xffCFE2FF),
         body: SingleChildScrollView(
           child: Column(
@@ -142,7 +152,13 @@ class _MechloginState extends State<Mechlogin> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return Forgottpass();
+                          },
+                        ));
+                      },
                       child: Padding(
                         padding: EdgeInsets.only(right: 45.w),
                         child: Text(

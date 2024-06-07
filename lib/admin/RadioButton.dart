@@ -23,7 +23,7 @@ class _AbcsState extends State<Abcs> {
           child: Column(
             children: [
               Padding(
-                padding:  EdgeInsets.only(top: 100.h),
+                padding: EdgeInsets.only(top: 100.h),
                 child: SafeArea(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

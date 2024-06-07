@@ -51,6 +51,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -90,6 +91,7 @@ flutter:
     - assets/mechs.png
     - assets/users.png
     - assets/Animation - 1715334676747.json
+    - assets/wp6588136.jpg
 
 
 

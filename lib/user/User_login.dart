@@ -40,6 +40,15 @@ class _UserloginState extends State<Userlogin> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color(0xffCFE2FF),
+          automaticallyImplyLeading: false,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: Icon(Icons.arrow_back_ios)),
+        ),
         backgroundColor: Color(0xffCFE2FF),
         body: SingleChildScrollView(
           child: Form(

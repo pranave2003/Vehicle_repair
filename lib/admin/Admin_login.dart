@@ -31,26 +31,33 @@ class _AdminloginState extends State<Adminlogin> {
     return Form(
       key: formkey,
       child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Color(0xffCFE2FF),
+            automaticallyImplyLeading: false,
+            leading: IconButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                icon: Icon(Icons.arrow_back_ios)),
+          ),
           backgroundColor: Color(0xffCFE2FF),
           body: SingleChildScrollView(
             child: Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(top: 50.h),
-                  child: SafeArea(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: 140.h,
-                          width: 140.w,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage("assets/tow 3.png"),
-                                  fit: BoxFit.fill)),
-                        )
-                      ],
-                    ),
+                  padding: EdgeInsets.only(top: 10.h),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: 140.h,
+                        width: 140.w,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage("assets/tow 3.png"),
+                                fit: BoxFit.fill)),
+                      )
+                    ],
                   ),
                 ),
                 Row(
@@ -124,7 +131,8 @@ class _AdminloginState extends State<Adminlogin> {
                         child: TextButton(
                             onPressed: () {
                               if (formkey.currentState!.validate()) {
-                              login();}
+                                login();
+                              }
                             },
                             child: Text(
                               "LOGIN",

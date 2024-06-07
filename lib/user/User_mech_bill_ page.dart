@@ -237,6 +237,13 @@ class _UserMechBillState extends State<UserMechBill> {
         .collection('UserRequest')
         .doc(widget.id)
         .update({'payment': '5', 'rating': _rating});
+    FirebaseFirestore.instance.collection("Userratings").add({
+      "mechname": payment!['mechname'],
+      "rating": _rating,
+      "mechid": payment!["mechid"],
+      "User": payment!["Userid"]
+    });
+
     Navigator.push(
         context,
         MaterialPageRoute(
