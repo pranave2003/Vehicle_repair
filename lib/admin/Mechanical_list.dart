@@ -128,19 +128,19 @@ class _MechanicalListState extends State<MechanicalList> {
     return Scaffold(
       backgroundColor: Color(0xFFE7F0FF),
       body: FutureBuilder(
-        future: FirebaseFirestore.instance.collection('mechsighn').get(),
+            future: FirebaseFirestore.instance.collection('mechsighn').get(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          if (snapshot.hasError) {
-            return Center(
-              child: Text("Error:${snapshot.error}"),
-            );
-          }
-          final mesign = snapshot.data?.docs ?? [];
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            if (snapshot.hasError) {
+              return Center(
+                child: Text("Error:${snapshot.error}"),
+              );
+            }
+            final mesign = snapshot.data?.docs ?? [];
           return ListView.builder(
             itemCount: mesign.length,
             itemBuilder: (context, index) {
