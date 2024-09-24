@@ -80,96 +80,46 @@ class _MechloginState extends State<Mechlogin> {
                 ],
               ),
               Padding(
-                padding: EdgeInsets.only(left: 50.w),
-                child: Row(
-                  children: [
-                    Text(
-                      "Enter Email",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-                    )
-                  ],
-                ),
+                padding: const EdgeInsets.only(left: 40, right: 40, top: 70),
+                child: TextFormField(
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'empty password';
+                      }
+                    },
+                    controller: Username,
+                    cursorColor: Colors.blue,
+                    style: TextStyle(),
+                    decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        filled: true,
+                        hintText: "Enter Username",
+                        enabledBorder: OutlineInputBorder(),
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))))),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 290.w,
-                      height: 50.h,
-                      child: TextFormField(
-                          controller: Username,
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "  Email",
-                              hintStyle: TextStyle(color: Colors.grey))),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.sp),
-                          color: Colors.white),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 50.w, top: 30.h),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        "Enter Password",
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w600),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 290.w,
-                      height: 50.h,
-                      child: TextFormField(
-                          controller: Password,
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "  Enter Password",
-                              hintStyle: TextStyle(color: Colors.grey))),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.sp),
-                          color: Colors.white),
-                    )
-                  ],
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return Forgottpass();
-                          },
-                        ));
-                      },
-                      child: Padding(
-                        padding: EdgeInsets.only(right: 45.w),
-                        child: Text(
-                          "Forgot password ?",
-                          style: TextStyle(
-                            color: Colors.black87,
-                            fontSize: 15.sp,
-                          ),
-                        ),
-                      ))
-                ],
+                padding: const EdgeInsets.only(left: 40, right: 40, top: 30),
+                child: TextFormField(
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'empty password';
+                      }
+                    },
+                    controller: Password,
+                    cursorColor: Colors.blue,
+                    style: TextStyle(),
+                    decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        filled: true,
+                        hintText: "Enter Password",
+                        enabledBorder: OutlineInputBorder(),
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))))),
               ),
               Padding(
                 padding: EdgeInsets.only(top: 90.h),
@@ -252,12 +202,15 @@ class _MechloginState extends State<Mechlogin> {
           return MechServiceHome();
         },
       ));
-    } else {
+    }
+    else {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text(
         "username and password error",
         style: TextStyle(color: Colors.red),
       )));
     }
+
+
   }
 }

@@ -35,5 +35,6 @@ class MyApp extends StatelessWidget {
           home: SplashScreen()),
       designSize: Size(390, 844),
     );
+
   }
 }
